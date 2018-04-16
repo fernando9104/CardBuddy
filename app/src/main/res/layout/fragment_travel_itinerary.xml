@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/departureDate_Text"
+        android:layout_width="141dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/departureDate_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/departureDate_Edit"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="date"
+        android:text="@string/formatDate_label"
+        android:textAlignment="center"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/departureDate_Text"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/returnDate_Text"
+        android:layout_width="141dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="41dp"
+        android:text="@string/returnDate_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/departureDate_Text"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/returnDate_Edit"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="date"
+        android:text="@string/formatDate_label"
+        android:textAlignment="center"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/returnDate_Text"
+        app:layout_constraintTop_toBottomOf="@+id/departureDate_Edit"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/countriesVisting_Text"
+        android:layout_width="140dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/countriesVisting_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/returnDate_Edit"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/countries_spinner"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toStartOf="@+id/country_add_Button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countriesVisting_Text"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/country_add_Button"
+        android:layout_width="102dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:tint="@color/colorIconFloatButton"
+        app:backgroundTint="@color/colorAddFloatButton"
+        app:layout_constraintEnd_toStartOf="@+id/country_remove_Button"
+        app:layout_constraintTop_toBottomOf="@+id/countriesVisting_Text"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/country_remove_Button"
+        android:layout_width="102dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:tint="@color/colorIconFloatButton"
+        app:backgroundTint="@color/colorRemoveFloatButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countriesVisting_Text"
+        app:srcCompat="@android:drawable/ic_delete"
+        tools:ignore="MissingConstraints" />
+
+    <ListView
+        android:id="@+id/countries_List"
+        android:layout_width="0dp"
+        android:layout_height="178dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@color/colorListSelector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countries_spinner"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/fileTravelItinerary_Button"
+        style="@style/Buttons"
+        android:layout_width="174dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="45dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="41dp"
+        android:text="@string/fileTravelItinerary_btn_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countries_List"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/cancel_Button"
+        style="@style/Buttons"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="41dp"
+        android:text="@string/cancel_btn_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fileTravelItinerary_Button"
+        app:layout_constraintTop_toBottomOf="@+id/countries_List"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>

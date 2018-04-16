@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/cardOnFile"
+            android:icon="@drawable/ic_credit_card"
+            android:title="@string/title_credit_charges" />
+
+        <item
+            android:id="@+id/foreignExchange"
+            android:icon="@drawable/ic_credit_card"
+            android:title="@string/foreingExchange_title" />
+    </group>
+</menu>

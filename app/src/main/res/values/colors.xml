@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#283593</color>
+    <color name="colorAccent">#304FFE</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+
+
+    <!--Luis-->
+
+    <color name="colorTextView">#0062c4</color>
+    <color name="colorCircProgBar">#0062c4</color>
+    <color name="colorAppBarTitle">#FFFFFF</color>
+    <color name="colorIconFloatButton">#FFFFFF</color>
+    <color name="colorAddFloatButton">#50CD12</color>
+    <color name="colorRemoveFloatButton">#FF2D20</color>
+    <color name="colorBackgButton">#0062c4</color>
+    <color name="colorTextButton">#FFFFFF</color>
+    <color name="colorDatepicker">#0062c4</color>
+    <color name="colorListSelector">#D4D9EB</color>
+    <color name="colorAmountText">#2DB703</color>
+</resources>

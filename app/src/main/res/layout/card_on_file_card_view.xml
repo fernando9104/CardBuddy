@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardOnFileCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="0.1dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_margin_circle_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.02" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_margin_left_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.16" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_margin_right_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.97" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_margin_top_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="@string/vertical_margin_top_card_view" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guide_margin_bottom_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="@string/vertical_margin_bottom_card_view" />
+
+        <TextView
+            android:id="@+id/label_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_text"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textAppearance="?android:textAppearanceInverse"
+            android:textAllCaps="true"
+            android:textSize="22dp"
+            android:text="D"
+            app:layout_constraintLeft_toRightOf="@+id/guide_margin_circle_icon"
+            app:layout_constraintTop_toBottomOf="@+id/guide_margin_top_card_view"
+            app:layout_constraintBottom_toTopOf="@+id/guide_margin_bottom_card_view"/>
+
+        <TextView
+            android:id="@+id/mrchName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="UNITED"
+            android:textAppearance="?android:textAppearanceInverse"
+            android:textColor="@color/primary_text"
+            app:layout_constraintLeft_toRightOf="@+id/guide_margin_left_card_view"
+            app:layout_constraintRight_toLeftOf="@+id/guide_margin_right_card_view"
+            app:layout_constraintTop_toBottomOf="@+id/guide_margin_top_card_view" />
+
+        <TextView
+            android:id="@+id/label_Name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:visibility="gone"
+            android:textAppearance="?android:textAppearanceInverse"
+            android:textColor="@color/colorAccent"
+            android:textSize="8dp"
+            android:textStyle="italic"
+            app:layout_constraintLeft_toRightOf="@+id/guide_margin_left_card_view"
+            app:layout_constraintRight_toLeftOf="@+id/guide_margin_right_card_view"
+            app:layout_constraintTop_toBottomOf="@+id/mrchName" />
+
+        <TextView
+            android:id="@+id/lastMrchTranDt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2017-07-27"
+            android:textAppearance="?android:textAppearanceInverse"
+            android:textColor="@color/secondary_text"
+            app:layout_constraintLeft_toRightOf="@+id/guide_margin_left_card_view"
+            app:layout_constraintRight_toLeftOf="@+id/guide_margin_right_card_view"
+            app:layout_constraintTop_toBottomOf="@+id/label_Name" />
+
+        <TextView
+            android:id="@+id/label_LastTransaction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Last Transaction"
+            android:textAppearance="?android:textAppearanceInverse"
+            android:textColor="@color/colorAccent"
+            android:textSize="8dp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/guide_margin_bottom_card_view"
+            app:layout_constraintLeft_toRightOf="@+id/guide_margin_left_card_view"
+            app:layout_constraintRight_toLeftOf="@+id/guide_margin_right_card_view"
+            app:layout_constraintTop_toBottomOf="@+id/lastMrchTranDt" />
+
+        <ImageView
+            android:id="@+id/icon_check_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_done_green"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/guide_margin_bottom_card_view"
+            app:layout_constraintRight_toLeftOf="@id/guide_margin_right_card_view" />
+
+        <ImageView
+            android:id="@+id/icon_warnin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_warning_two"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/guide_margin_bottom_card_view"
+            app:layout_constraintRight_toLeftOf="@id/guide_margin_right_card_view" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

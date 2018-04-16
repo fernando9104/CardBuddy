@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="25dp">
+
+    <TextView
+        android:id="@+id/youAreIn_Text"
+        android:layout_width="85dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/youAreIn_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/countries_spinner"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/youAreIn_Text"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/amount_Text"
+        android:layout_width="85dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="41dp"
+        android:text="@string/amount_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/youAreIn_Text"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/amount_Edit"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="10"
+        android:textAlignment="center"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintEnd_toStartOf="@+id/amount_add_Button"
+        app:layout_constraintStart_toEndOf="@+id/amount_Text"
+        app:layout_constraintTop_toBottomOf="@+id/countries_spinner"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/amount_add_Button"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:tint="@color/colorIconFloatButton"
+        app:backgroundTint="@color/colorAddFloatButton"
+        app:layout_constraintEnd_toStartOf="@+id/amount_remove_Button"
+        app:layout_constraintTop_toBottomOf="@+id/countries_spinner"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/amount_remove_Button"
+        android:layout_width="0dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:scaleType="center"
+        android:tint="@color/colorIconFloatButton"
+        app:backgroundTint="@color/colorRemoveFloatButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countries_spinner"
+        app:srcCompat="@android:drawable/ic_delete"
+        tools:ignore="MissingConstraints" />
+
+    <ListView
+        android:id="@+id/amounts_List"
+        android:layout_width="0dp"
+        android:layout_height="186dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="33dp"
+        android:choiceMode="singleChoice"
+        android:listSelector="@color/colorListSelector"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amount_Edit" />
+
+    <TextView
+        android:id="@+id/total_amount_Text"
+        android:layout_width="141dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/total_amount_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amounts_List"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+    <EditText
+        android:id="@+id/total_amount_Edit"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/total_amount_Text"
+        app:layout_constraintTop_toBottomOf="@+id/amounts_List"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+    <Button
+        android:id="@+id/calculate_Button"
+        style="@style/Buttons"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/calculate_btn_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_amount_Text"
+        tools:ignore="MissingConstraints" />
+
+</android.support.constraint.ConstraintLayout>
+

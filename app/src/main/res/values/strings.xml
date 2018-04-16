@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">Apis</string>
+    <string name="title_home">Account Updater</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="hint_account_number">Account Number *</string>
+    <string name="hint_exp_date">Date Expiration *</string>
+    <string name="title_activity_resume">Result</string>
+    <string name="no">No</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="ok">Ok</string>
+    <string name="title_fragment_card_on_file">Recurring Credit Card Charges</string>
+    <string name="title_credit_charges">Credit Card Charges</string>
+    <string name="vertical_margin_left_card_view">0.025</string>
+    <string name="vertical_margin_right_card_view">0.975</string>
+    <string name="vertical_margin_top_card_view">0.025</string>
+    <string name="vertical_margin_bottom_card_view">0.975</string>
+    <string name="text_please_wait">Please Wait</string>
+
+
+    <string name="action_settings">Settings</string>
+    <string name="foreingExchange_title">Foreign Exchange Rates</string>
+    <string name="welcome_title">Welcome</string>
+    <string name="welcome_label">You are in Colombia</string>
+    <string name="create_travel_itinerary_title">Travel Itinerary</string>
+    <string name="update_travel_itinerary_title">Update Travel Itinerary</string>
+    <string name="youAreIn_label">You are in</string>
+    <string name="amount_label">Amount</string>
+    <string name="noTravelItinerary_title">No Travel Itinerary</string>
+    <string name="noTravelItinerary_text">
+        You have not filed a travel itinerary.\nYou  card may be declined when used in Colombia, due to fraud protection.\n\n<b>To avoid this, would you like to file a travel itinerary now?</b>
+    </string>
+    <string name="countryNoTravelItinerary_title">Country Not In Travel Itinerary</string>
+    <string name="countryNoTravelItinerary_text">
+        Colombia is not included in your travel itinerary.\nYour card may be declined when used in Colombia, due to fraud protection.\n\n<b>To avoid this, would you like to update your travel itinerary now?</b>
+    </string>
+    <string name="yes_button_text">YES</string>
+    <string name="no_button_text">NO</string>
+    <string name="departureDate_label">Departure Date</string>
+    <string name="returnDate_label">Return Date</string>
+    <string name="formatDate_label">DD-MMM-YYYY</string>
+    <string name="countriesVisting_label">Countries Visting</string>
+    <string name="fileTravelItinerary_btn_text">File Travel Itinerary</string>
+    <string name="updateTravelItinerary_btn_text">Update Travel Itinerary</string>
+    <string name="cancel_btn_text">Cancel</string>
+    <string name="country_selected_exist_Text">The selected country is already on the travel itinerary list. Please select a different country.</string>
+    <string name="country_no_selected_list_Text">Please select a country from the travel itinerary list to remove.</string>
+    <string name="country_select_Text">Please select a country.</string>
+    <string name="data_required_Text">Please enter all the information required.</string>
+    <string name="travel_itinerary_created">Your travel itinerary has been filed.</string>
+    <string name="travel_itinerary_update">Your travel itinerary has been updated.</string>
+    <string name="total_amount_label">Total Amount</string>
+    <string name="calculate_btn_text">Calculate Amount</string>
+    <string name="exchange_country_label">From #country# to United States</string>
+    <string name="source_country_label">#country# - #coin#</string>
+    <string name="convertion_rate_label">1 #coin# = #amount# USD</string>
+    <string name="conversion_amount_label">Conversion Amount</string>
+    <string name="amount_no_selected_list_Text">Please select a amount from the list to remove.</string>
+    <string name="amount_empty_Text">Please enter a amount.</string>
+    <string name="calculate_another_btn_text">Calculate Another Amount</string>
+    <string name="destination_country_label">United States - USD</string>
+    <string name="error_request_Text">Sorry, there was a problem with the request, please try again or later.</string>
+    <string name="colombia_required_Text">Please include Colombia in the travel itinerary to continue.</string>
+
+    <!-- Seccion Arreglos -->
+    <string name="country_select_prompt">Select Country</string>
+    <string-array name="countries">
+        <item>@string/country_select_prompt</item>
+        <item>68,Bolivia</item>
+        <item>76,Brazil</item>
+        <item>152,Chile</item>
+        <item>170,Colombia</item>
+        <item>270,Gambia</item>
+        <item>404,Kenia</item>
+    </string-array>
+
+    <string-array name="ISO_coins">
+        <item>68,Bs</item>
+        <item>76,R$</item>
+        <item>152,CLP</item>
+        <item>170,COP</item>
+        <item>270,GMD</item>
+        <item>404,KSh</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/exchange_country_Text"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/exchange_country_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/conversion_rate_Text"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/convertion_rate_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exchange_country_Text"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/source_country_Text"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/source_country_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conversion_rate_Text"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/total_amount_Text"
+        android:layout_width="141dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/total_amount_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/source_country_Text"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+    <EditText
+        android:id="@+id/total_amount_Edit"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="3dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/colorAmountText"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/total_amount_Text"
+        app:layout_constraintTop_toBottomOf="@+id/source_country_Text"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+    <TextView
+        android:id="@+id/destination_country_Text"
+        android:layout_width="0dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/destination_country_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_amount_Text"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/conversion_amount_Text"
+        android:layout_width="160dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/conversion_amount_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/destination_country_Text"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+    <EditText
+        android:id="@+id/conversion_amount_Edit"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="3dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/colorAmountText"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/conversion_amount_Text"
+        app:layout_constraintTop_toBottomOf="@+id/destination_country_Text"
+        tools:ignore="MissingConstraints,UnknownId" />
+
+    <Button
+        android:id="@+id/calculate_another_Button"
+        style="@style/Buttons"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/calculate_another_btn_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conversion_amount_Text"
+        app:layout_constraintVertical_bias="0.681"
+        tools:ignore="MissingConstraints" />
+
+
+
+</android.support.constraint.ConstraintLayout>
