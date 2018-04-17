@@ -92,13 +92,17 @@ public class FragmentTravelItinerary extends Fragment {
         switch( this.data.get(1) ){
             case "create":
                 ForeignExchange.setupToolbarText(R.string.create_travel_itinerary_title);
+
                 departureDate.setText(formatDate);
                 returnDate.setText(formatDate);
+
                 countriesAdapter.removeCountry("Colombia");
                 countriesSpinner.setAdapter(countriesAdapter.getAdapter());
+                this.data.add("Brazil");
                 break;
             case "update":
                 ForeignExchange.setupToolbarText(R.string.update_travel_itinerary_title);
+
                 if( this.data.size() == 2  ){
 
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy", Locale.UK);
@@ -116,17 +120,18 @@ public class FragmentTravelItinerary extends Fragment {
                     this.data.add("Chile");
                 }
 
+                this.data.add("Colombia");
                 fileTravelButton.setText(R.string.updateTravelItinerary_btn_text);
                 countriesSpinner.setAdapter(countriesAdapter.getAdapter());
-
-                ArrayList<String> countriesSpinnerArray = countriesAdapter.getCountriesArray();
-                for( String country: this.data ){
-                    if( countriesSpinnerArray.contains(country) ){
-                        countriesListView.setAdapter(selectCountryAdapter.getAdapter(country,true));
-                    }
-                }
                 break;
         }// Fin del switch
+
+        ArrayList<String> countriesSpinnerArray = countriesAdapter.getCountriesArray();
+        for( String country: this.data ){
+            if( countriesSpinnerArray.contains(country) ){
+                countriesListView.setAdapter(selectCountryAdapter.getAdapter(country,true));
+            }
+        }
     }
 
     /* Metodo que configura los eventos de escucha de los

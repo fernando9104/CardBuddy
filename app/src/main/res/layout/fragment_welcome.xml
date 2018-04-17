@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/welcome_Text"
-        android:layout_width="273dp"
+        android:layout_width="170dp"
         android:layout_height="29dp"
         android:layout_marginTop="152dp"
         android:text="@string/welcome_label"
@@ -16,7 +16,6 @@
         android:textSize="23dp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.855"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
