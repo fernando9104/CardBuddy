@@ -95,7 +95,7 @@ public class CardOnFile extends Fragment {
 
         } catch (Exception e) {
 
-            UserInterfaceSvc.showMsgError(getContext(), null, stage + " : " + e.getMessage());
+            UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
         }
     }// Fin getData
 
@@ -112,26 +112,33 @@ public class CardOnFile extends Fragment {
                     switch (returnAction) {
 
                         case Constants.ACTION_SUCCESS:
-                            respServer = (Map<String, String>) intent.getSerializableExtra(Constants.DATA_FROM_SERVER);
+                            respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
                             getData(respServer);
                             break;
                         case Constants.ACTION_ERROR:
-                            respServer = (Map<String, String>) intent.getSerializableExtra(Constants.DATA_FROM_SERVER);
-                            UserInterfaceSvc.showMsgError( context, getString(R.string.title_home), respServer.get("result"));
+                            respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
+                            if( noDataLayout.getVisibility() == View.GONE ){
+                                noDataLayout.setVisibility( View.VISIBLE );
+                                UserInterfaceSvc.showMsgError( context, getString(R.string.title_home), respServer.get("result") );
+                            }
                             break;
                         case Constants.ACTION_FAIL:
-                            UserInterfaceSvc.showMsgError( context, context.getResources().getString(R.string.title_home), intent.getStringExtra("responseRequest").toString() );
+                            if( noDataLayout.getVisibility() == View.GONE ){
+                                noDataLayout.setVisibility( View.VISIBLE );
+                                UserInterfaceSvc.showMsgError( context, context.getResources().getString(R.string.title_home), intent.getStringExtra("responseRequest").toString() );
+                            }
                             break;
                     }// Fin switch
 
                 } catch (Exception e) {
 
-                    UserInterfaceSvc.showMsgError( getContext(), null, stage + " : " + e.getMessage() );
+                    UserInterfaceSvc.showMsgError( context, null, stage + " : " + e.getMessage() );
                 }// Fin try/catch
 
                 progressOn.setVisibility(View.GONE);
             }// Fin onReceive
         }; // fin BroadcastReceiver
+
         // En: Creation of the Filter intent or medium to catch the actions of the BroadcastReceiver
         // Es: Creacion del inten Filter o medio para atrapar las acciones del BroadcastReceiver
         IntentFilter defineActionDp = new IntentFilter();
@@ -139,13 +146,12 @@ public class CardOnFile extends Fragment {
         defineActionDp.addAction(Constants.ACTION_SUCCESS);
         defineActionDp.addAction(Constants.ACTION_FAIL);
         defineActionDp.addAction(Constants.ACTION_ERROR);
-        getContext().registerReceiver(cofDP, defineActionDp);
+        context.registerReceiver(cofDP, defineActionDp);
 
     }// Fin listenerResponse
 
     /**
      * <p><b>Es: </b>Funcion para obtener los datos enviados desde el servidor</p>
-     *
      * @param respServer
      */
     private void getData(Map<String, String> respServer) {
@@ -181,7 +187,7 @@ public class CardOnFile extends Fragment {
 
         } catch (JSONException e) {
 
-            UserInterfaceSvc.showMsgError(getContext(), null, stage + " : " + e.getMessage());
+            UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
         }// Fin try/catch
 
     }// Fin getData
@@ -189,7 +195,7 @@ public class CardOnFile extends Fragment {
     private void publicData(JSONArray merchantsArray) {
 
         try {
-            Log.d(TAG_COF, "merchantsArray: " + merchantsArray);
+
             int indexArray = 0;
             cardOnfileValues.clear();
             while (indexArray <= merchantsArray.length() - 1) {
@@ -206,7 +212,7 @@ public class CardOnFile extends Fragment {
             cardOnFileAdapter.notifyDataSetChanged();
 
         } catch (JSONException e) {
-            UserInterfaceSvc.showMsgError(getContext(), null, stage + " : " + e.getMessage());
+            UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
         }// FIn try/catch
 
     }// Fin publicData

@@ -97,7 +97,6 @@ public class UrlConection {
                 statusCode = ParseJsonSvc.getStatusCode(response);
             }
 
-
             switch (statusCode) {
 
                 case 0:
@@ -130,14 +129,12 @@ public class UrlConection {
                     break;
 
                 case 408:
-
                     break;
 
                 default:
-
                     returnActionCode = Constants.ACTION_ERROR;
                     respJson = ParseJsonSvc.parseJSON(response);
-                    sendResponse(respJson);
+                    sendResponse( respJson );
                     break;
 
             }// Fin switch

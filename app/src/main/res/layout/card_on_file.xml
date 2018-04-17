@@ -78,7 +78,7 @@
             android:layout_marginLeft="5dp"
             android:textSize="20dp"
             android:text="Credit Card Name"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/color_primary_text"
             app:layout_constraintLeft_toRightOf="@+id/image_creditCard"
             app:layout_constraintBottom_toTopOf="@+id/guide_line_center_header_cardView" />
 
