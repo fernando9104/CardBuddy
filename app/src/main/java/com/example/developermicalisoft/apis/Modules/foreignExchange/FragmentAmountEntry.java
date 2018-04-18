@@ -91,12 +91,20 @@ public class FragmentAmountEntry  extends Fragment{
 
         // Configura Pais
         countriesSpinner.setAdapter(countriesAdapter.getAdapter());
-        countriesSpinner.setSelection(getCountryPosition("Colombia"));
 
         listenerEventsSetup();  // Configura los eventos de escucha
         calculateTotalAmount(); // Calcula monto total actual
 
         return amountEntryLayout;
+    }
+
+    /* Soluciona que los items del diseño se puedan refrescar
+     * de forma correcta con el nuevo valor.
+     */
+    @Override
+    public void onResume(){
+        super.onResume();
+        countriesSpinner.setSelection(getCountryPosition("Colombia"));
     }
 
     /* Metodo que configura los eventos de escucha de los
