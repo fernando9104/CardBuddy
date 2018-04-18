@@ -76,7 +76,7 @@ public class FragDialogAmountCalculated extends DialogFragment{
     public void onResume(){
         super.onResume();
         int widthLayout   = getResources().getDisplayMetrics().widthPixels;
-        int heightLayout  = getResources().getDisplayMetrics().heightPixels;
+        int heightLayout  = getResources().getDisplayMetrics().heightPixels-50;
         getDialog().getWindow().setLayout( widthLayout, heightLayout );
     }
 
