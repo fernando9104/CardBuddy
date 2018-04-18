@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/welcome_Text"
-        android:layout_width="170dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="152dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
         android:text="@string/welcome_label"
         android:textColor="@color/colorTextView"
         android:textSize="23dp"
@@ -22,10 +22,12 @@
 
 
     <ImageView
-        android:layout_width="274dp"
-        android:layout_height="249dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="66dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/you_are_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
