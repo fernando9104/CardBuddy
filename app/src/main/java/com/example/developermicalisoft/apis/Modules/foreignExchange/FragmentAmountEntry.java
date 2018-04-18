@@ -93,7 +93,6 @@ public class FragmentAmountEntry  extends Fragment{
         countriesSpinner.setAdapter(countriesAdapter.getAdapter());
 
         listenerEventsSetup();  // Configura los eventos de escucha
-        calculateTotalAmount(); // Calcula monto total actual
 
         return amountEntryLayout;
     }
@@ -105,6 +104,7 @@ public class FragmentAmountEntry  extends Fragment{
     public void onResume(){
         super.onResume();
         countriesSpinner.setSelection(getCountryPosition("Colombia"));
+        calculateTotalAmount(); // Calcula monto total actual
     }
 
     /* Metodo que configura los eventos de escucha de los
@@ -237,18 +237,6 @@ public class FragmentAmountEntry  extends Fragment{
         totalAmountEdit.setText(totalAmount.toString());
     }
 
-    /* Configura los mensajes de aviso o alerta
-     * para el usuario.
-     */
-    private static void setupMessageToast( int idString ){
-
-        if( messageToast.getView().isShown() ){
-            messageToast.cancel();
-        }
-        messageToast.setText(idString);
-        messageToast.show();
-    }
-
     /* Metodo que se encarga de ejecutar la peticion
      * de cambio de divisas.
      */
@@ -275,6 +263,18 @@ public class FragmentAmountEntry  extends Fragment{
         }
     }
 
+    /* Configura los mensajes de aviso o alerta
+     * para el usuario.
+     */
+    public static void setupMessageToast( int idString ){
+
+        if( messageToast.getView().isShown() ){
+            messageToast.cancel();
+        }
+        messageToast.setText(idString);
+        messageToast.show();
+    }
+
     /* Metodo que se encarga de limpiar toda la lista de montos */
     public static void clearAmountsListView(){
         amountsListView.setAdapter(amountsEntryAdapter.getAdapter( null,false));
@@ -290,50 +290,37 @@ public class FragmentAmountEntry  extends Fragment{
 
         try {
 
-            String statusCode = respRequest.getString("code");
+            String conversionRate = respRequest.getString("conversionRate");
+            String result = respRequest.getString("result");
 
-            switch( statusCode ){
-                case "200":
-                    String conversionRate   = respRequest.getString("conversionRate");
-                    String result           = respRequest.getString("result");
+            if( sendMinimumAmount ){
 
-                    if( sendMinimumAmount ){
+                HashMap<String,String> ISOcoins = countriesAdapter.getISOcoins();
+                String ISOcountry  = iSOCountries.get(selectedCountry);
 
-                        HashMap<String,String> ISOcoins = countriesAdapter.getISOcoins();
-                        String ISOcountry  = iSOCountries.get(selectedCountry);
+                String convRateNewText = convRateTextContainer.replace("#coin#", ISOcoins.get(ISOcountry));
+                convRateNewText = convRateNewText.replace("#amount#", conversionRate);
+                conversionRateTextView.setText(convRateNewText);
+                conversionRateTextView.setVisibility(View.VISIBLE);
+            }else{
+                // Crea el arreglo con los datos ingresados
+                ArrayList<String> data = new ArrayList<>();
+                data.add(iSOCountries.get(selectedCountry));            //ISO
+                data.add(selectedCountry);                              //Ciudad
+                data.add(totalAmountEdit.getText().toString());         //Cantidad
+                data.add(conversionRateTextView.getText().toString());  //ConversionRate
+                data.add(result);                                       //Cantidad resultante
 
-                        String convRateNewText = convRateTextContainer.replace("#coin#", ISOcoins.get(ISOcountry));
-                        convRateNewText = convRateNewText.replace("#amount#", conversionRate);
-                        conversionRateTextView.setText(convRateNewText);
-                        conversionRateTextView.setVisibility(View.VISIBLE);
-                    }else{
-                        // Crea el arreglo con los datos ingresados
-                        ArrayList<String> data = new ArrayList<>();
-                        data.add(iSOCountries.get(selectedCountry));            //ISO
-                        data.add(selectedCountry);                              //Ciudad
-                        data.add(totalAmountEdit.getText().toString());         //Cantidad
-                        data.add(conversionRateTextView.getText().toString());  //ConversionRate
-                        data.add(result);                                       //Cantidad resultante
+                // Crea objeto clave-valor para argumentos
+                Bundle args = new Bundle();
+                args.putStringArrayList( "data",data );
 
-                        // Crea objeto clave-valor para argumentos
-                        Bundle args = new Bundle();
-                        args.putStringArrayList( "data",data );
-
-                        FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
-                        fragDialog.setArguments(args);
-                        fragDialog.show(fragmentManager,"FragDialogAmountCalculated");
-                    }
-                    break;
-                default:
-                    throw new RuntimeException();
-            }// fin del switch
+                FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
+                fragDialog.setArguments(args);
+                fragDialog.show(fragmentManager,"FragDialogAmountCalculated");
+            }
 
         }catch (JSONException e) {
-
-            e.printStackTrace();
-        }catch ( Exception e ){
-
-            // Mensaje de aviso al usuario
             setupMessageToast(R.string.error_request_Text);
         }
     }

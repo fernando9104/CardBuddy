@@ -3,10 +3,9 @@ package com.example.developermicalisoft.apis.Modules.foreignExchange;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ProgressBar;
-
+import com.example.developermicalisoft.apis.R;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +21,6 @@ public class ConnectionAsyncTask {
     private static URL urlServer;
     private static int timeOut;
     private static String keyValue;
-    private static JSONObject respRequest;
 
     private static class RunTask extends AsyncTask<String,String,String> {
 
@@ -49,12 +47,24 @@ public class ConnectionAsyncTask {
 
                 ForeignExchange.setClikeableProgBar(false);
                 circularProgBar.setVisibility(View.GONE);
-                respRequest = new JSONObject(respJson);
-                FragmentAmountEntry.goToFragmentDialog(respRequest);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-                FragmentAmountEntry.goToFragmentDialog(respRequest);
+                if( respJson == null ){
+                    FragmentAmountEntry.setupMessageToast(R.string.error_request_Text);
+                }else{
+                    JSONObject respRequest  = new JSONObject(respJson);
+                    String statusCode = respRequest.getString("code");
+
+                    switch( statusCode ){
+                        case "200":
+                            FragmentAmountEntry.goToFragmentDialog(respRequest);
+                            break;
+                        default:
+                            throw new JSONException(null);
+                    }// fin del switch
+                }
+
+            }catch(JSONException e) {
+                FragmentAmountEntry.setupMessageToast(R.string.error_request_Text);
             }
         }
 
@@ -116,8 +126,6 @@ public class ConnectionAsyncTask {
 
     /* Metodo publico que ejecuta la tarea */
     public static void request( JSONObject params ){
-
-        respRequest = null;
 
         try {
             keyValue    = "pais=" + params.getString("country") + "&precio=" + params.getString("amount");
