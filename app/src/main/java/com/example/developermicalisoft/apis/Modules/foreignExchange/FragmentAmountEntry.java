@@ -1,5 +1,6 @@
 package com.example.developermicalisoft.apis.Modules.foreignExchange;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -7,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,12 +16,9 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.developermicalisoft.apis.R;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,6 +33,7 @@ public class FragmentAmountEntry  extends Fragment{
     private int selectedAmountList;
     private Button calculateButton;
     private String defaultValueSpinner;
+    private InputMethodManager inputMethodManager;
 
     private static CountriesToAdapter countriesAdapter;
     private static TextView conversionRateTextView;
@@ -85,6 +85,7 @@ public class FragmentAmountEntry  extends Fragment{
         amountsEntryAdapter   = new AmountEntryToAdapter(getActivity());
         messageToast          = Toast.makeText(getActivity(),"", Toast.LENGTH_SHORT );
         fragmentManager       = getFragmentManager();
+        inputMethodManager    = (InputMethodManager)amountEntryLayout.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         selectedAmountList    = -1;
         conversionRateTextView.setVisibility(View.GONE);
 
@@ -136,12 +137,15 @@ public class FragmentAmountEntry  extends Fragment{
                 String amountEmpty = amountEdit.getText().toString();
 
                 if( amountEmpty.equals("") ){
+
                     // Mensaje de aviso al usuario
                     setupMessageToast(R.string.amount_empty_Text);
                 }else{
+
                     amountEdit.setText("");
                     entryAmount = Integer.parseInt(amountEmpty);
                     amountsListView.setAdapter(amountsEntryAdapter.getAdapter(entryAmount,true));
+                    inputMethodManager.hideSoftInputFromWindow(amountEdit.getWindowToken(), 0);
 
                     // Calcula o recalcula el monto total
                     calculateTotalAmount();
