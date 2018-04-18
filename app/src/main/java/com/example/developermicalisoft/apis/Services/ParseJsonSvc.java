@@ -78,7 +78,7 @@ public class ParseJsonSvc {
             resp.put("ERROR", step + " : " + e.getMessage().toString());
 
         }// try/catch.
-
+        Log.d(TAG_LOG, "resp: " + resp);
         return resp;
     }// Fin parseJSON
 

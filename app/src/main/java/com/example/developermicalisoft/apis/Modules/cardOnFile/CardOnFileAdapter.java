@@ -71,14 +71,14 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
             cardHolder.lastTransaction.setText( cardOnFileValues.get(position).lastMrchTranDt );
         }// Fin try/catch
 
-        String updateStatus     = cardOnFileValues.get( position ).vAUUpdateStatus;
         String acctNumOld4Digit = cardOnFileValues.get( position ).acctNumOld4Digit;
-        String mCC              = cardOnFileValues.get( position ).mCC;
+        String iconCheck    = cardOnFileValues.get( position ).iconCheck;
+        String iconWarnin   = cardOnFileValues.get( position ).iconWarnin;
 
-        if( acctNumOld4Digit.equals( mCC ) && updateStatus.equals("Y") ){
+        if( iconCheck.equals( "2" ) ){
             cardHolder.iconCheck.setVisibility( View.VISIBLE );
             cardHolder.iconWarnin.setVisibility( View.GONE );
-        }else{
+        }else if( iconWarnin.equals( "2" ) ){
             cardHolder.iconWarnin.setVisibility( View.VISIBLE );
             cardHolder.iconCheck.setVisibility( View.GONE );
         }// Fin if/else

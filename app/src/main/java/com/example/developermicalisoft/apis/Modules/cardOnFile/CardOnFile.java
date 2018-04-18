@@ -158,25 +158,13 @@ public class CardOnFile extends Fragment {
 
         try {
 
-            String data = respServer.get("responseData");
+            String data = respServer.get("data");
 
             if ( ! data.equals( "null" ) ) {
 
-                stage = "get responseData";
-                JSONObject response = new JSONObject(respServer.get("responseData"));
-
-                stage = "get panData";
-                Object panData = response.get("panData");
-
-                stage = "get panData";
-                JSONObject merchanJSON = new JSONObject(panData.toString());
-
                 stage = "get merchants";
-                JSONArray merchantsArray = merchanJSON.getJSONArray("merchants");
+                JSONArray merchantsArray = new JSONArray( respServer.get("data") );
 
-                stage = "setSortJSON";
-                // Funcion que se encarga de agregar datos al array para poder hacer el sourt deseado
-                merchantsArray = SortJsonSvc.SortJsonSvc(merchantsArray, "vAUUpdateStatus", "N", "Y");
                 stage = "publicData";
                 publicData(merchantsArray);
 
@@ -185,7 +173,7 @@ public class CardOnFile extends Fragment {
                 noDataLayout.setVisibility( View.VISIBLE );
             }// Fin if
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
 
             UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
         }// Fin try/catch
