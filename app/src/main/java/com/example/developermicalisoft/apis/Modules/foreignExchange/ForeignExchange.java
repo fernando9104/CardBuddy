@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+
+import com.example.developermicalisoft.apis.Main;
 import com.example.developermicalisoft.apis.R;
 import com.example.developermicalisoft.apis.Services.UserInterfaceSvc;
 
@@ -55,9 +57,8 @@ public class ForeignExchange extends Fragment {
     }// Fin onCreateView
 
     /* Configura el texto del toolbar de la applicacion. */
-
     public static void setupToolbarText( int id ){
-        UserInterfaceSvc.setToolbar(foreignExchangeActivity, foreignExchangeActivity.getString(id), true);
+        Main.setupToolbarText(id);
     }
 
     /* Obtiene la actividad principal de la App. */

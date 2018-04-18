@@ -1,6 +1,5 @@
 package com.example.developermicalisoft.apis;
 
-import android.content.BroadcastReceiver;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,20 +12,18 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-
-import com.example.developermicalisoft.apis.Modules.accountUpdater.CreditCardForm;
 import com.example.developermicalisoft.apis.Modules.cardOnFile.CardOnFile;
 import com.example.developermicalisoft.apis.Modules.foreignExchange.ForeignExchange;
 import com.example.developermicalisoft.apis.Modules.foreignExchange.FragmentToTransaction;
-import com.example.developermicalisoft.apis.Services.UserInterfaceSvc;
 
 public class Main extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private FragmentManager fragmentManager = null;
-    private Toolbar toolbar;
     private ActionBar actionBar;
+
+    private static Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,16 +71,18 @@ public class Main extends AppCompatActivity {
 
         Fragment newfragment = null;
         fragmentManager = getSupportFragmentManager();
+        int idTitle = 0;
 
         switch (item.getItemId()) {
 
             case R.id.cardOnFile:
                 newfragment = new CardOnFile();
-                //title = getString(R.string.title_credit_charges);
+                idTitle = R.string.title_credit_charges;
                 break;
 
             case R.id.foreignExchange:
                 newfragment = new ForeignExchange();
+                idTitle = R.string.foreingExchange_title;
                 break;
         }
         if (newfragment != null) {
@@ -99,8 +98,7 @@ public class Main extends AppCompatActivity {
         }
 
         // Se configura el titulo del modulo en el appBar.
-        String title = (String) item.getTitle();
-        setTitle( title );
+        setupToolbarText( idTitle );
 
     }// FIn showFragment
 
@@ -111,6 +109,11 @@ public class Main extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }// Fin showToolbar
+
+    // Metodo que configura el titulo del toolbar
+    public static void setupToolbarText( int id ){
+        toolbar.setTitle( id );
+    }
 
     @Override
     public void onBackPressed() {
