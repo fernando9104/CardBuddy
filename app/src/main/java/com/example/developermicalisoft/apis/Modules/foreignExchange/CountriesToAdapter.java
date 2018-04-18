@@ -13,7 +13,7 @@ public class CountriesToAdapter {
     private Activity activity;
     private ArrayAdapter<CharSequence> countriesAdapter;
     private ArrayList<String> countriesArray;
-    private HashMap<String,String> isoCountries;
+    private HashMap<String,String> isoCountries, minimunAmounts, ISOcoins;
 
     /* Metodo constructor de la clase */
     public CountriesToAdapter(Activity activity) {
@@ -35,11 +35,16 @@ public class CountriesToAdapter {
      */
     private ArrayList<String> getValueOfArray(){
 
-        String[] optionsArray  = this.activity.getResources().getStringArray(R.array.countries);
+        String[] optionsArray       = this.activity.getResources().getStringArray(R.array.countries);
+        String[] minimumAmtArray    = this.activity.getResources().getStringArray(R.array.minimum_amounts);
+        String[] ISOcoinsArray      = this.activity.getResources().getStringArray(R.array.ISO_coins);
+
         countriesArray  = new ArrayList<>();
         isoCountries    = new HashMap<>();
+        minimunAmounts  = new HashMap<>();
+        ISOcoins        = new HashMap<>();
 
-        // Itera los valores de la array
+        // Itera los valores de los arreglos
         for( String obj: optionsArray ){
             String[] keyValue = obj.split(",");
             if( keyValue.length == 1 ){
@@ -48,6 +53,14 @@ public class CountriesToAdapter {
                 countriesArray.add(keyValue[1]);
                 isoCountries.put(keyValue[1], keyValue[0]);
             }
+        }
+        for( String obj: minimumAmtArray ){
+            String[] keyValue = obj.split(",");
+            minimunAmounts.put(keyValue[0], keyValue[1]);
+        }
+        for( String obj: ISOcoinsArray ){
+            String[] keyValue = obj.split(",");
+            ISOcoins.put(keyValue[0], keyValue[1]);
         }
 
         return countriesArray;
@@ -58,6 +71,20 @@ public class CountriesToAdapter {
      */
     public HashMap<String,String> getISOCountries(){
         return isoCountries;
+    }
+
+    /* Metodo que obtiene un objeto clave-valor, con el
+     * Pais y la cantidad minima que la API puede evaluar.
+     */
+    public HashMap<String,String> getMinimunAmounts(){
+        return minimunAmounts;
+    }
+
+    /* Metodo que obtiene un objeto clave-valor, con el
+     * ISO y la moneda de cada pais.
+     */
+    public HashMap<String,String> getISOcoins(){
+        return ISOcoins;
     }
 
     /* Metodo que elimina un elemento del arreglo

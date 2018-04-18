@@ -56,10 +56,7 @@ public class FragDialogAmountCalculated extends DialogFragment{
         // Configura los textos con la informacion suministrada.
         textValueContainer = exchangeCountryTextView.getText().toString().replace("#country#", this.data.get(1));
         exchangeCountryTextView.setText(textValueContainer);
-
-        textValueContainer = conversionRateTextView.getText().toString().replace("#coin#", ISOcoins.get(this.data.get(0)));
-        textValueContainer = textValueContainer.replace("#amount#", this.data.get(3));
-        conversionRateTextView.setText(textValueContainer);
+        conversionRateTextView.setText(this.data.get(3));
 
         textValueContainer = sourceCountryTextView.getText().toString().replace("#country#", this.data.get(1));
         textValueContainer = textValueContainer.replace("#coin#", ISOcoins.get(this.data.get(0)));

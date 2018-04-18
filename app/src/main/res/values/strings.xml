@@ -29,7 +29,7 @@
     <string name="amount_label">Amount</string>
     <string name="noTravelItinerary_title">No Travel Itinerary</string>
     <string name="noTravelItinerary_text">
-        You have not filed a travel itinerary.\nYou  card may be declined when used in Colombia, due to fraud protection.\n\n<b>To avoid this, would you like to file a travel itinerary now?</b>
+        You have not filed a travel itinerary.\nYour  card may be declined when used in Colombia, due to fraud protection.\n\n<b>To avoid this, would you like to file a travel itinerary now?</b>
     </string>
     <string name="countryNoTravelItinerary_title">Country Not In Travel Itinerary</string>
     <string name="countryNoTravelItinerary_text">
@@ -73,6 +73,15 @@
         <item>170,Colombia</item>
         <item>270,Gambia</item>
         <item>404,Kenia</item>
+    </string-array>
+
+    <string-array name="minimum_amounts">
+        <item>Bolivia,1</item>
+        <item>Brazil,1</item>
+        <item>Chile,4</item>
+        <item>Colombia,16</item>
+        <item>Gambia,1</item>
+        <item>Kenia,1</item>
     </string-array>
 
     <string-array name="ISO_coins">

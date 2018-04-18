@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.developermicalisoft.apis.R;
@@ -27,7 +28,6 @@ public class FragmentAmountEntry  extends Fragment{
     private View amountEntryLayout;
     private ArrayList<String> data;
     private Spinner countriesSpinner;
-    private CountriesToAdapter countriesAdapter;
     private FloatingActionButton amountAddButton, amountRemoveButton;
     private EditText amountEdit;
     private Integer entryAmount;
@@ -35,14 +35,18 @@ public class FragmentAmountEntry  extends Fragment{
     private Button calculateButton;
     private String defaultValueSpinner;
 
+    private static CountriesToAdapter countriesAdapter;
+    private static TextView conversionRateTextView;
     private static ArrayList<Integer> selectedAmountsArray;
     private static AmountEntryToAdapter amountsEntryAdapter;
     private static ListView amountsListView;
-    private static HashMap<String,String> iSOCountries;
+    private static HashMap<String,String> iSOCountries, minimumAmounts;
     private static String selectedCountry;
     private static EditText totalAmountEdit;
     private static FragmentManager fragmentManager;
     private static Toast messageToast;
+    private static Boolean sendMinimumAmount;
+    private static String convRateTextContainer;
 
     // Obtengo parametros pasados al fragment.
     @Override
@@ -65,14 +69,16 @@ public class FragmentAmountEntry  extends Fragment{
         ForeignExchange.setupToolbarText(R.string.foreingExchange_title);
 
         // Obtiene items del diseño
-        amountEdit            = amountEntryLayout.findViewById(R.id.amount_Edit);
-        countriesSpinner      = amountEntryLayout.findViewById(R.id.countries_spinner);
-        amountAddButton       = amountEntryLayout.findViewById(R.id.amount_add_Button);
-        amountRemoveButton    = amountEntryLayout.findViewById(R.id.amount_remove_Button);
-        amountsListView       = amountEntryLayout.findViewById(R.id.amounts_List);
-        totalAmountEdit       = amountEntryLayout.findViewById(R.id.total_amount_Edit);
-        calculateButton       = amountEntryLayout.findViewById(R.id.calculate_Button);
-        defaultValueSpinner   = getResources().getString(R.string.country_select_prompt);
+        amountEdit              = amountEntryLayout.findViewById(R.id.amount_Edit);
+        countriesSpinner        = amountEntryLayout.findViewById(R.id.countries_spinner);
+        amountAddButton         = amountEntryLayout.findViewById(R.id.amount_add_Button);
+        amountRemoveButton      = amountEntryLayout.findViewById(R.id.amount_remove_Button);
+        amountsListView         = amountEntryLayout.findViewById(R.id.amounts_List);
+        totalAmountEdit         = amountEntryLayout.findViewById(R.id.total_amount_Edit);
+        conversionRateTextView  = amountEntryLayout.findViewById(R.id.conversion_rate_Text);
+        calculateButton         = amountEntryLayout.findViewById(R.id.calculate_Button);
+        convRateTextContainer   = getString(R.string.convertion_rate_label);
+        defaultValueSpinner     = getResources().getString(R.string.country_select_prompt);
 
         // Instancia los objetos necesarios para la correcta interaccion con el usuario
         countriesAdapter      = new CountriesToAdapter(getActivity());
@@ -80,14 +86,14 @@ public class FragmentAmountEntry  extends Fragment{
         messageToast          = Toast.makeText(getActivity(),"", Toast.LENGTH_SHORT );
         fragmentManager       = getFragmentManager();
         selectedAmountList    = -1;
+        conversionRateTextView.setVisibility(View.GONE);
 
         // Configura Pais
         countriesSpinner.setAdapter(countriesAdapter.getAdapter());
         countriesSpinner.setSelection(getCountryPosition("Colombia"));
 
-        // Configura los eventos de escucha
-        listenerEventsSetup();
-        calculateTotalAmount();
+        listenerEventsSetup();  // Configura los eventos de escucha
+        calculateTotalAmount(); // Calcula monto total actual
 
         return amountEntryLayout;
     }
@@ -105,7 +111,11 @@ public class FragmentAmountEntry  extends Fragment{
             }
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
                 selectedCountry = adapterView.getItemAtPosition(i).toString();
+
+                sendMinimumAmount = true;
+                executeRequest( sendMinimumAmount ); // Ejecuta la peticion, enviar el valor minimo
             }
         });
 
@@ -172,20 +182,9 @@ public class FragmentAmountEntry  extends Fragment{
                 }
 
                 if( calculateForeign ){
-
-                    iSOCountries = countriesAdapter.getISOCountries();
-
-                    try {
-
-                        JSONObject params = new JSONObject();
-
-                        params.put("country", iSOCountries.get(selectedCountry));
-                        params.put("amount", totalAmountEdit.getText().toString());
-                        ConnectionAsyncTask.request( params );
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    // Ejecuta la peticion
+                    sendMinimumAmount = false;
+                    executeRequest( sendMinimumAmount );
                 }else{
                     // Mensaje de aviso al usuario
                     setupMessageToast(R.string.data_required_Text);
@@ -238,6 +237,32 @@ public class FragmentAmountEntry  extends Fragment{
         messageToast.show();
     }
 
+    /* Metodo que se encarga de ejecutar la peticion
+     * de cambio de divisas.
+     */
+    private void executeRequest( Boolean sendMinimumAmt ){
+
+        iSOCountries    = countriesAdapter.getISOCountries();
+        minimumAmounts  = countriesAdapter.getMinimunAmounts();
+
+        try {
+
+            JSONObject params = new JSONObject();
+
+            if( sendMinimumAmt ){
+                params.put("amount", minimumAmounts.get(selectedCountry));
+            }else{
+                params.put("amount", totalAmountEdit.getText().toString());
+            }
+
+            params.put("country", iSOCountries.get(selectedCountry));
+            ConnectionAsyncTask.request( params );
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     /* Metodo que se encarga de limpiar toda la lista de montos */
     public static void clearAmountsListView(){
         amountsListView.setAdapter(amountsEntryAdapter.getAdapter( null,false));
@@ -260,21 +285,32 @@ public class FragmentAmountEntry  extends Fragment{
                     String conversionRate   = respRequest.getString("conversionRate");
                     String result           = respRequest.getString("result");
 
-                    // Crea el arreglo con los datos ingresados
-                    ArrayList<String> data = new ArrayList<>();
-                    data.add(iSOCountries.get(selectedCountry));        //ISO
-                    data.add(selectedCountry);                          //Ciudad
-                    data.add(totalAmountEdit.getText().toString());     //Cantidad
-                    data.add(conversionRate);                           //ConversionRate
-                    data.add(result);                                   //Cantidad resultante
+                    if( sendMinimumAmount ){
 
-                    // Crea objeto clave-valor para argumentos
-                    Bundle args = new Bundle();
-                    args.putStringArrayList( "data",data );
+                        HashMap<String,String> ISOcoins = countriesAdapter.getISOcoins();
+                        String ISOcountry  = iSOCountries.get(selectedCountry);
 
-                    FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
-                    fragDialog.setArguments(args);
-                    fragDialog.show(fragmentManager,"FragDialogAmountCalculated");
+                        String convRateNewText = convRateTextContainer.replace("#coin#", ISOcoins.get(ISOcountry));
+                        convRateNewText = convRateNewText.replace("#amount#", conversionRate);
+                        conversionRateTextView.setText(convRateNewText);
+                        conversionRateTextView.setVisibility(View.VISIBLE);
+                    }else{
+                        // Crea el arreglo con los datos ingresados
+                        ArrayList<String> data = new ArrayList<>();
+                        data.add(iSOCountries.get(selectedCountry));            //ISO
+                        data.add(selectedCountry);                              //Ciudad
+                        data.add(totalAmountEdit.getText().toString());         //Cantidad
+                        data.add(conversionRateTextView.getText().toString());  //ConversionRate
+                        data.add(result);                                       //Cantidad resultante
+
+                        // Crea objeto clave-valor para argumentos
+                        Bundle args = new Bundle();
+                        args.putStringArrayList( "data",data );
+
+                        FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
+                        fragDialog.setArguments(args);
+                        fragDialog.show(fragmentManager,"FragDialogAmountCalculated");
+                    }
                     break;
                 default:
                     throw new RuntimeException();
