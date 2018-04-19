@@ -71,7 +71,6 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
             cardHolder.lastTransaction.setText( cardOnFileValues.get(position).lastMrchTranDt );
         }// Fin try/catch
 
-        String acctNumOld4Digit = cardOnFileValues.get( position ).acctNumOld4Digit;
         String iconCheck    = cardOnFileValues.get( position ).iconCheck;
         String iconWarnin   = cardOnFileValues.get( position ).iconWarnin;
 

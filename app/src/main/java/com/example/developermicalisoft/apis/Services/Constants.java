@@ -16,5 +16,6 @@ public class Constants {
 
     public static final String API_VAU              = "accountUpdater/AccountUpdater.php?";
     public static final String API_COF              = "cardFile/cof.php?";
+    public static final String API_GENERAL_INQUIRY  = "pymntacntattrinqry/gai.php?";
 
 }

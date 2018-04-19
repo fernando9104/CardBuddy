@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/logo"
@@ -54,8 +54,8 @@
             android:layout_marginLeft="20dp"
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="5dp"
-            app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/guide_marginBottom_header_cardView"
+            app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guide_marginTop_header_cardView">
 
             <LinearLayout
@@ -86,24 +86,23 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:orientation="vertical"
             android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/guide_marginBottom_header_cardView"
             app:layout_constraintLeft_toRightOf="@+id/guide_line_left_header_cardView"
             app:layout_constraintRight_toLeftOf="@+id/guide_line_right_header_cardView"
-            app:layout_constraintTop_toBottomOf="@+id/guide_marginTop_header_cardView"
-            app:layout_constraintBottom_toTopOf="@+id/guide_marginBottom_header_cardView">
+            app:layout_constraintTop_toBottomOf="@+id/guide_marginTop_header_cardView">
 
             <TextView
                 android:id="@+id/issuerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BANCO AGROMERCANTIL DE GUATEMALA S.A."
                 android:textColor="@color/color_primary_text" />
 
             <TextView
+                android:id="@+id/numberCreditCard"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Credit Card ending 5432"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
