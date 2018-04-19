@@ -11,7 +11,7 @@
     <string name="yes">Yes</string>
     <string name="ok">Ok</string>
     <string name="title_fragment_card_on_file">Recurring Credit Card Charges</string>
-    <string name="title_credit_charges">Credit Card Charges</string>
+    <string name="title_credit_charges">Recurring Charges</string>
     <string name="vertical_margin_left_card_view">0.025</string>
     <string name="vertical_margin_right_card_view">0.975</string>
     <string name="vertical_margin_top_card_view">0.025</string>
@@ -65,6 +65,7 @@
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
+    <string name="credit_ending">Credit Card ending</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>

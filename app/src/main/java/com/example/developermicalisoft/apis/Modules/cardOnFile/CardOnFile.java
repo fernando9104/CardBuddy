@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.developermicalisoft.apis.Main;
 import com.example.developermicalisoft.apis.R;
@@ -49,6 +50,8 @@ public class CardOnFile extends Fragment {
     private CardOnFileAdapter cardOnFileAdapter;
     private FrameLayout progressOn, noDataLayout;
     private Context context;
+    private String nameRequest = "loadCOF";
+    private TextView issuerName, numberCreditCard;
 
     @Nullable
     @Override
@@ -58,6 +61,8 @@ public class CardOnFile extends Fragment {
         context = getContext();
         progressOn = cardOnFileView.findViewById(R.id.layout_progressOnCardOnFile);
         noDataLayout = cardOnFileView.findViewById(R.id.noData);
+        issuerName = cardOnFileView.findViewById(R.id.issuerName);
+        numberCreditCard = cardOnFileView.findViewById(R.id.numberCreditCard);
         // Se obtiene el recycler
         RecyclerView cardOnFileRecycler = cardOnFileView.findViewById(R.id.cardOnFileRecycler);
         cardOnFileRecycler.setHasFixedSize(true);
@@ -86,14 +91,16 @@ public class CardOnFile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         progressOn.setVisibility(View.VISIBLE);
         listenerResponse();
-        getData();
+        loadData();
     }
 
-    private void getData() {
+    private void loadData() {
 
         try {
 
             stage = "Create Params";
+            nameRequest = "loadCOF";
+
             String url = BuildUrl.getStringUrl(Constants.API_COF);
 
             JSONObject stringParameters = new JSONObject();
@@ -104,7 +111,24 @@ public class CardOnFile extends Fragment {
 
             UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
         }
-    }// Fin getData
+    }// Fin loadData
+
+    private void loadGeneralInquiry(){
+
+        try{
+
+            stage = "Create Params loadGeneralInquiry";
+            nameRequest = "loadGeneral";
+            String url = BuildUrl.getStringUrl(Constants.API_GENERAL_INQUIRY);
+
+            JSONObject stringParameters = new JSONObject();
+            stringParameters.put("primaryAccountNumber", "4815070000000000");
+            UrlConection.request(getActivity(), url, "POST", stringParameters);
+
+        }catch ( Exception e ){
+            UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
+        }
+    }// Fin if
 
     private void listenerResponse() {
 
@@ -119,9 +143,21 @@ public class CardOnFile extends Fragment {
                     switch (returnAction) {
 
                         case Constants.ACTION_SUCCESS:
-                            respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
-                            getData(respServer);
+
+                            switch ( nameRequest ){
+
+                                case "loadCOF":
+                                    respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
+                                    getData(respServer);
+                                    loadGeneralInquiry();
+                                    break;
+                                case "loadGeneral":
+                                    respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
+                                    publicLoadGeneral( respServer );
+                                    break;
+                            }// Fin switch
                             break;
+
                         case Constants.ACTION_ERROR:
                             respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
                             if( noDataLayout.getVisibility() == View.GONE ){
@@ -129,6 +165,7 @@ public class CardOnFile extends Fragment {
                                 UserInterfaceSvc.showMsgError( context, getString(R.string.title_credit_charges), respServer.get("result") );
                             }
                             break;
+
                         case Constants.ACTION_FAIL:
                             if( noDataLayout.getVisibility() == View.GONE ){
                                 noDataLayout.setVisibility( View.VISIBLE );
@@ -211,5 +248,20 @@ public class CardOnFile extends Fragment {
         }// FIn try/catch
 
     }// Fin publicData
+
+    private void publicLoadGeneral( Map<String, String> respServer ){
+
+        try {
+
+            JSONObject jsonObject = new JSONObject( respServer.get("result") );
+            issuerName.setText( jsonObject.get("issuerName").toString() );
+            numberCreditCard.setText( context.getResources().getString(R.string.credit_ending) +" 4051" );
+
+        } catch (JSONException e) {
+
+            UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
+        }
+        //cardProductName
+    }// Fin publicLoadGeneral
 
 }

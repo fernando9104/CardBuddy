@@ -2,14 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    android:layout_height="wrap_content">
 
-    <include android:id="@+id/header"
-        layout="@layout/header"/>
-
-    <!--
     <android.support.constraint.ConstraintLayout
         android:id="@+id/logo"
         android:layout_width="0dp"
@@ -60,8 +54,8 @@
             android:layout_marginLeft="20dp"
             app:cardBackgroundColor="@color/colorPrimary"
             app:cardCornerRadius="5dp"
-            app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/guide_marginBottom_header_cardView"
+            app:layout_constraintLeft_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guide_marginTop_header_cardView">
 
             <LinearLayout
@@ -92,81 +86,26 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:orientation="vertical"
             android:gravity="center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/guide_marginBottom_header_cardView"
             app:layout_constraintLeft_toRightOf="@+id/guide_line_left_header_cardView"
             app:layout_constraintRight_toLeftOf="@+id/guide_line_right_header_cardView"
-            app:layout_constraintTop_toBottomOf="@+id/guide_marginTop_header_cardView"
-            app:layout_constraintBottom_toTopOf="@+id/guide_marginBottom_header_cardView">
+            app:layout_constraintTop_toBottomOf="@+id/guide_marginTop_header_cardView">
 
             <TextView
                 android:id="@+id/issuerName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BANCO AGROMERCANTIL DE GUATEMALA S.A."
                 android:textColor="@color/color_primary_text" />
 
             <TextView
+                android:id="@+id/numberCreditCard"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Credit Card ending 5432"/>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
--->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/cardOnFileRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        app:layout_constraintTop_toBottomOf="@+id/header" />
-
-    <FrameLayout
-        android:id="@+id/layout_progressOnCardOnFile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#96FFFFFF"
-        android:clickable="true"
-        android:visibility="gone">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/msgProgressOnCardOnFile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_bottom_msg_to_progressOn"
-                android:background="@android:color/transparent"
-                android:text="@string/text_please_wait"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_size_msg_progressBar" />
-
-            <ProgressBar
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="160dp"
-                android:layout_height="8dp"
-                android:indeterminate="true" />
-
-        </LinearLayout>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/noData"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="You do not have any recurrent payments yet" />
-    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
