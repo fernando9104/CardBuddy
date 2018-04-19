@@ -7,12 +7,16 @@ import com.example.developermicalisoft.apis.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class ConnectionAsyncTask {
 
@@ -21,6 +25,7 @@ public class ConnectionAsyncTask {
     private static URL urlServer;
     private static int timeOut;
     private static String keyValue;
+    private static JSONObject params;
 
     private static class RunTask extends AsyncTask<String,String,String> {
 
@@ -89,6 +94,19 @@ public class ConnectionAsyncTask {
             connServer.setReadTimeout(timeOut);     // tiempo para limite para la lectura
             connServer.connect();                   // realiza conexion
 
+            // Defino el objeto para la decuencia de salida
+            OutputStream outputStream = connServer.getOutputStream();
+
+            // Defino el escritor de caracteres que usara la secuencia de salida
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF8"));
+
+            // Configuramos parametros
+            String paramsToServer = params.toString();
+            writer.write(URLEncoder.encode(paramsToServer, "UTF-8"));
+            outputStream.flush();       // Obliga a escribir la cadena almacenada en el buffer.
+            writer.close();             // libera los recursos
+            outputStream.close();       // libera el buffer
+
             // Obtengo la entrada resultante en la peticion
             InputStream inputConnetStream = connServer.getInputStream();
 
@@ -125,17 +143,20 @@ public class ConnectionAsyncTask {
     }
 
     /* Metodo publico que ejecuta la tarea */
-    public static void request( JSONObject params ){
+    public static void request( JSONObject args, String APIname ){
 
-        try {
-            keyValue    = "pais=" + params.getString("country") + "&precio=" + params.getString("amount");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        timeOut = 8000;
+        params  = args;
 
-        timeOut     = 8000;
-        addrServer  = "http://200.116.176.216/eMergeVisa/samplecode-PHP-771c26/vdp-php/tests/foreignexchange/ForeignExchange.php?";
-        addrServer  = addrServer + keyValue;
+        // Identifica el API a consultar
+        switch( APIname ){
+            case "F.E":     // Foreign Exchange
+                addrServer  = "http://200.116.176.216/eMergeVisa/samplecode-PHP-771c26/vdp-php/tests/foreignexchange/ForeignExchange.php";
+                break;
+            case "G.A.I":  // General Attribute Inquiry
+                addrServer  = "http://200.116.176.216/eMergeVisa/samplecode-PHP-771c26/vdp-php/tests/pymntacntattrinqry/gai.php";
+                break;
+        }// Fin del switch
 
         new RunTask().execute();
     }

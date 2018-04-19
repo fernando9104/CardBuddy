@@ -256,7 +256,7 @@ public class FragmentAmountEntry  extends Fragment{
             }
 
             params.put("country", iSOCountries.get(selectedCountry));
-            ConnectionAsyncTask.request( params );
+            ConnectionAsyncTask.request( params, "F.E" );
 
         } catch (JSONException e) {
             e.printStackTrace();
