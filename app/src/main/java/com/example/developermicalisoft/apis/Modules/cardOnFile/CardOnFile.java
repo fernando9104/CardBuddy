@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.developermicalisoft.apis.Main;
 import com.example.developermicalisoft.apis.R;
 import com.example.developermicalisoft.apis.Services.BuildUrl;
 import com.example.developermicalisoft.apis.Services.Constants;
@@ -75,6 +76,12 @@ public class CardOnFile extends Fragment {
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        Main.setupToolbarText(R.string.title_credit_charges);
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         progressOn.setVisibility(View.VISIBLE);
@@ -119,13 +126,13 @@ public class CardOnFile extends Fragment {
                             respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
                             if( noDataLayout.getVisibility() == View.GONE ){
                                 noDataLayout.setVisibility( View.VISIBLE );
-                                UserInterfaceSvc.showMsgError( context, getString(R.string.title_home), respServer.get("result") );
+                                UserInterfaceSvc.showMsgError( context, getString(R.string.title_credit_charges), respServer.get("result") );
                             }
                             break;
                         case Constants.ACTION_FAIL:
                             if( noDataLayout.getVisibility() == View.GONE ){
                                 noDataLayout.setVisibility( View.VISIBLE );
-                                UserInterfaceSvc.showMsgError( context, context.getResources().getString(R.string.title_home), intent.getStringExtra("responseRequest").toString() );
+                                UserInterfaceSvc.showMsgError( context, context.getResources().getString(R.string.title_credit_charges), intent.getStringExtra("responseRequest").toString() );
                             }
                             break;
                     }// Fin switch

@@ -71,22 +71,17 @@ public class Main extends AppCompatActivity {
 
         Fragment newfragment = null;
         fragmentManager = getSupportFragmentManager();
-        int idTitle = 0;
 
         switch (item.getItemId()) {
-
             case R.id.cardOnFile:
                 newfragment = new CardOnFile();
-                idTitle = R.string.title_credit_charges;
                 break;
-
             case R.id.foreignExchange:
                 newfragment = new ForeignExchange();
-                idTitle = R.string.foreingExchange_title;
                 break;
         }
-        if (newfragment != null) {
 
+        if (newfragment != null) {
             fragmentManager.beginTransaction().
                     replace(R.id.fragment_container, newfragment)
                     .setTransition(FragmentTransaction.TRANSIT_EXIT_MASK)
@@ -96,9 +91,6 @@ public class Main extends AppCompatActivity {
         if( item.isChecked() == false ){
             item.setChecked( true );
         }
-
-        // Se configura el titulo del modulo en el appBar.
-        setupToolbarText( idTitle );
 
     }// FIn showFragment
 
