@@ -12,6 +12,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
+
 import com.example.developermicalisoft.apis.Modules.cardOnFile.CardOnFile;
 import com.example.developermicalisoft.apis.Modules.foreignExchange.ForeignExchange;
 import com.example.developermicalisoft.apis.Modules.foreignExchange.FragmentToTransaction;
@@ -24,21 +26,24 @@ public class Main extends AppCompatActivity {
     private ActionBar actionBar;
 
     private static Toolbar toolbar;
+    private static TextView toolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        //getIntent().setAction("Already created");
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar         = (Toolbar) findViewById(R.id.toolbar);
+        toolbarTitle    = (TextView) findViewById(R.id.toolbar_title);
+        drawerLayout    = (DrawerLayout) findViewById(R.id.drawer_layout);
+        navigationView  = (NavigationView) findViewById(R.id.nav_view);
+
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         showToolbar();
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
         setDrawerLayout(navigationView);
+
         // Se hace la seleccion del primer item del menu.
         showFragment(navigationView.getMenu().getItem(0));
 
@@ -99,12 +104,13 @@ public class Main extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
         }
     }// Fin showToolbar
 
     // Metodo que configura el titulo del toolbar
     public static void setupToolbarText( int id ){
-        toolbar.setTitle( id );
+        toolbarTitle.setText( id );
     }
 
     @Override
