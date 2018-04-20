@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Parameter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,7 +25,7 @@ public class ConnectionAsyncTask {
     private static String addrServer;
     private static URL urlServer;
     private static int timeOut;
-    private static String keyValue;
+    private static String API;
     private static JSONObject params;
 
     private static class RunTask extends AsyncTask<String,String,String> {
@@ -61,7 +62,7 @@ public class ConnectionAsyncTask {
 
                     switch( statusCode ){
                         case "200":
-                            FragmentAmountEntry.goToFragmentDialog(respRequest);
+                            FragmentAmountEntry.goToFragmentDialog(respRequest, API);
                             break;
                         default:
                             throw new JSONException(null);
@@ -147,9 +148,10 @@ public class ConnectionAsyncTask {
 
         timeOut = 8000;
         params  = args;
+        API     = APIname;
 
         // Identifica el API a consultar
-        switch( APIname ){
+        switch( API ){
             case "F.E":     // Foreign Exchange
                 addrServer  = "http://200.116.176.216/eMergeVisa/samplecode-PHP-771c26/vdp-php/tests/foreignexchange/ForeignExchange.php";
                 break;

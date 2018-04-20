@@ -24,7 +24,6 @@ import java.util.HashMap;
 
 public class FragmentAmountEntry  extends Fragment{
 
-    private View amountEntryLayout;
     private ArrayList<String> data;
     private Spinner countriesSpinner;
     private FloatingActionButton amountAddButton, amountRemoveButton;
@@ -35,8 +34,9 @@ public class FragmentAmountEntry  extends Fragment{
     private String defaultValueSpinner;
     private InputMethodManager inputMethodManager;
 
+    private static View amountEntryLayout;
     private static CountriesToAdapter countriesAdapter;
-    private static TextView conversionRateTextView;
+    private static TextView conversionRateTextView, issuerNameTextView, numCreditCardTextView;
     private static ArrayList<Integer> selectedAmountsArray;
     private static AmountEntryToAdapter amountsEntryAdapter;
     private static ListView amountsListView;
@@ -76,6 +76,8 @@ public class FragmentAmountEntry  extends Fragment{
         amountsListView         = amountEntryLayout.findViewById(R.id.amounts_List);
         totalAmountEdit         = amountEntryLayout.findViewById(R.id.total_amount_Edit);
         conversionRateTextView  = amountEntryLayout.findViewById(R.id.conversion_rate_Text);
+        issuerNameTextView      = amountEntryLayout.findViewById(R.id.issuerName);
+        numCreditCardTextView   = amountEntryLayout.findViewById(R.id.numberCreditCard);
         calculateButton         = amountEntryLayout.findViewById(R.id.calculate_Button);
         convRateTextContainer   = getString(R.string.convertion_rate_label);
         defaultValueSpinner     = getResources().getString(R.string.country_select_prompt);
@@ -124,7 +126,7 @@ public class FragmentAmountEntry  extends Fragment{
                 selectedCountry = adapterView.getItemAtPosition(i).toString();
 
                 sendMinimumAmount = true;
-                executeRequest( sendMinimumAmount ); // Ejecuta la peticion, enviar el valor minimo
+                executeRequestFE( sendMinimumAmount ); // Ejecuta la peticion, enviar el valor minimo
             }
         });
 
@@ -196,7 +198,7 @@ public class FragmentAmountEntry  extends Fragment{
                 if( calculateForeign ){
                     // Ejecuta la peticion
                     sendMinimumAmount = false;
-                    executeRequest( sendMinimumAmount );
+                    executeRequestFE( sendMinimumAmount );
                 }else{
                     // Mensaje de aviso al usuario
                     setupMessageToast(R.string.data_required_Text);
@@ -240,7 +242,7 @@ public class FragmentAmountEntry  extends Fragment{
     /* Metodo que se encarga de ejecutar la peticion
      * de cambio de divisas.
      */
-    private void executeRequest( Boolean sendMinimumAmt ){
+    private void executeRequestFE( Boolean sendMinimumAmt ){
 
         iSOCountries    = countriesAdapter.getISOCountries();
         minimumAmounts  = countriesAdapter.getMinimunAmounts();
@@ -257,6 +259,22 @@ public class FragmentAmountEntry  extends Fragment{
 
             params.put("country", iSOCountries.get(selectedCountry));
             ConnectionAsyncTask.request( params, "F.E" );
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /* Metodo que se encarga de ejecutar la peticion
+     * de cambio de divisas.
+     */
+    private static void executeRequestGAI(){
+
+        try {
+
+            JSONObject params = new JSONObject();
+            params.put("primaryAccountNumber", "4815070000000000");
+            ConnectionAsyncTask.request( params, "G.A.I" );
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -286,39 +304,51 @@ public class FragmentAmountEntry  extends Fragment{
      * NOTA esta funcion es invocada en el metodo onPostExecute
      * de la calse Async Task sirve como Callback.
      */
-    public static void goToFragmentDialog( JSONObject respRequest ){
+    public static void goToFragmentDialog( JSONObject respRequest, String APIname ){
 
         try {
+            // Identifica el API
+            switch( APIname ){
+                case "F.E":
+                    String conversionRate = respRequest.getString("conversionRate");
+                    String result = respRequest.getString("result");
 
-            String conversionRate = respRequest.getString("conversionRate");
-            String result = respRequest.getString("result");
+                    if( sendMinimumAmount ){
 
-            if( sendMinimumAmount ){
+                        HashMap<String,String> ISOcoins = countriesAdapter.getISOcoins();
+                        String ISOcountry  = iSOCountries.get(selectedCountry);
 
-                HashMap<String,String> ISOcoins = countriesAdapter.getISOcoins();
-                String ISOcountry  = iSOCountries.get(selectedCountry);
+                        String convRateNewText = convRateTextContainer.replace("#coin#", ISOcoins.get(ISOcountry));
+                        convRateNewText = convRateNewText.replace("#amount#", conversionRate);
+                        conversionRateTextView.setText(convRateNewText);
+                        conversionRateTextView.setVisibility(View.VISIBLE);
+                        executeRequestGAI();
+                    }else{
+                        // Crea el arreglo con los datos ingresados
+                        ArrayList<String> data = new ArrayList<>();
+                        data.add(iSOCountries.get(selectedCountry));            //ISO
+                        data.add(selectedCountry);                              //Ciudad
+                        data.add(totalAmountEdit.getText().toString());         //Cantidad
+                        data.add(conversionRateTextView.getText().toString());  //ConversionRate
+                        data.add(result);                                       //Cantidad resultante
 
-                String convRateNewText = convRateTextContainer.replace("#coin#", ISOcoins.get(ISOcountry));
-                convRateNewText = convRateNewText.replace("#amount#", conversionRate);
-                conversionRateTextView.setText(convRateNewText);
-                conversionRateTextView.setVisibility(View.VISIBLE);
-            }else{
-                // Crea el arreglo con los datos ingresados
-                ArrayList<String> data = new ArrayList<>();
-                data.add(iSOCountries.get(selectedCountry));            //ISO
-                data.add(selectedCountry);                              //Ciudad
-                data.add(totalAmountEdit.getText().toString());         //Cantidad
-                data.add(conversionRateTextView.getText().toString());  //ConversionRate
-                data.add(result);                                       //Cantidad resultante
+                        // Crea objeto clave-valor para argumentos
+                        Bundle args = new Bundle();
+                        args.putStringArrayList( "data",data );
 
-                // Crea objeto clave-valor para argumentos
-                Bundle args = new Bundle();
-                args.putStringArrayList( "data",data );
+                        FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
+                        fragDialog.setArguments(args);
+                        fragDialog.show(fragmentManager,"FragDialogAmountCalculated");
+                    }
+                    break;
+                case "G.A.I":
+                    String issuerName = respRequest.getJSONObject("result").getString("issuerName");
+                    String numCreditCard = amountEntryLayout.getResources().getString(R.string.credit_ending)+ " 0000";
 
-                FragDialogAmountCalculated fragDialog = new FragDialogAmountCalculated();
-                fragDialog.setArguments(args);
-                fragDialog.show(fragmentManager,"FragDialogAmountCalculated");
-            }
+                    issuerNameTextView.setText(issuerName);
+                    numCreditCardTextView.setText(numCreditCard);
+                    break;
+            }// Fin del switch
 
         }catch (JSONException e) {
             setupMessageToast(R.string.error_request_Text);
