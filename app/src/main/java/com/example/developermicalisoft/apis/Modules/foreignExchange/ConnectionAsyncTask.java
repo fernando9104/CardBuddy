@@ -1,8 +1,7 @@
 package com.example.developermicalisoft.apis.Modules.foreignExchange;
 
 import android.os.AsyncTask;
-import android.view.View;
-import android.widget.ProgressBar;
+import android.support.constraint.ConstraintLayout;
 import com.example.developermicalisoft.apis.R;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Parameter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,7 +19,7 @@ import java.net.URLEncoder;
 
 public class ConnectionAsyncTask {
 
-    private static ProgressBar circularProgBar;
+    private static ConstraintLayout layoutProgBar;
     private static String addrServer;
     private static URL urlServer;
     private static int timeOut;
@@ -33,10 +31,7 @@ public class ConnectionAsyncTask {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
-            ForeignExchange.setClikeableProgBar(true);
-            circularProgBar = ForeignExchange.getCircularProgBar();
-            circularProgBar.setVisibility(View.VISIBLE);
+            ForeignExchange.setLayoutProgBar(true);
         }
 
         @Override
@@ -51,8 +46,7 @@ public class ConnectionAsyncTask {
 
             try {
 
-                ForeignExchange.setClikeableProgBar(false);
-                circularProgBar.setVisibility(View.GONE);
+                ForeignExchange.setLayoutProgBar(false);
 
                 if( respJson == null ){
                     FragmentAmountEntry.setupMessageToast(R.string.error_request_Text);

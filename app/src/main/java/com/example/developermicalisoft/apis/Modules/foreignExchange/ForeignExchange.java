@@ -10,18 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-
 import com.example.developermicalisoft.apis.Main;
 import com.example.developermicalisoft.apis.R;
-import com.example.developermicalisoft.apis.Services.UserInterfaceSvc;
-
 import java.util.ArrayList;
 
 public class ForeignExchange extends Fragment {
 
     private static Fragment welcomeFragment, travelItineraryFragment, amountEntryFragment;
-    private static ProgressBar circularProgBar;
     private static Handler checkProgBarHandler;
     private static Activity foreignExchangeActivity;
     private static ConstraintLayout layoutProgBar;
@@ -42,7 +37,6 @@ public class ForeignExchange extends Fragment {
         // Obtiene los items del diseño
         toolbar         = foreignChangeView.findViewById(R.id.toolbar);
         layoutProgBar   = foreignChangeView.findViewById(R.id.layout_progBar);
-        circularProgBar = foreignChangeView.findViewById(R.id.welcome_progBar);
 
         // Obitiene Fragmentos
         welcomeFragment         = new FragmentWelcome();            // Welcome
@@ -81,14 +75,21 @@ public class ForeignExchange extends Fragment {
         return travelItineraryFragment;
     }
 
-    /* Obtiene el objeto Progress Bar de la actividad principal. */
-    public static ProgressBar getCircularProgBar(){
-        return circularProgBar;
+    /* Obtiene el diseño del Progress Bar de la actividad principal. */
+    public static ConstraintLayout getLayoutProgBar(){
+        return layoutProgBar;
     }
 
-    /* Se encarga de bloquear y desbloquear el diseño mientra esta en carga. */
-    public static void setClikeableProgBar( Boolean clickear ){
-        layoutProgBar.setClickable(clickear);
+    /* Se encarga de configurar el progress bar segun lo requerido. */
+    public static void setLayoutProgBar( Boolean isVisible ){
+
+        if( isVisible){
+            layoutProgBar.setClickable(true);
+            layoutProgBar.setVisibility( View.VISIBLE );
+        }else{
+            layoutProgBar.setClickable(false);
+            layoutProgBar.setVisibility( View.GONE );
+        }
     }
 
     /* Configura el punto de control actual de la aplicacion.*/
@@ -110,14 +111,12 @@ public class ForeignExchange extends Fragment {
      */
     public static void runProgBar(){
 
-        setClikeableProgBar(true);
-        circularProgBar.setVisibility( View.VISIBLE );
+        setLayoutProgBar(true);
         // Duerme la aplicacion durante 5 segundos
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                setClikeableProgBar(false);
-                circularProgBar.setVisibility( View.GONE );
+                setLayoutProgBar(false);
             }
         }, 3000);
     }
@@ -131,7 +130,7 @@ public class ForeignExchange extends Fragment {
         checkProgBarHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if( circularProgBar.getVisibility() == View.GONE ){
+                if( layoutProgBar.getVisibility() == View.GONE ){
                     // Este paso no requiere dialogo
                     if( data.get(0).equals("F") ){
                         Bundle args = new Bundle();
