@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">APIs Visa</string>
     <string name="title_home">Account Updater</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="hint_account_number">Account Number *</string>
     <string name="hint_exp_date">Date Expiration *</string>
     <string name="title_activity_resume">Result</string>
@@ -10,16 +8,12 @@
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="ok">Ok</string>
-    <string name="title_fragment_card_on_file">Recurring Credit Card Charges</string>
     <string name="title_credit_charges">Recurring Charges</string>
-    <string name="vertical_margin_left_card_view">0.025</string>
-    <string name="vertical_margin_right_card_view">0.975</string>
     <string name="vertical_margin_top_card_view">0.025</string>
     <string name="vertical_margin_bottom_card_view">0.975</string>
     <string name="text_please_wait">Please Wait</string>
 
 
-    <string name="action_settings">Settings</string>
     <string name="foreingExchange_title">Foreign Exchange Rates</string>
     <string name="welcome_title">Welcome</string>
     <string name="welcome_label">You are in Brazil</string>

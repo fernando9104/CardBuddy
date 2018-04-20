@@ -3,7 +3,6 @@ package com.example.developermicalisoft.apis.Modules.cardOnFile;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +49,7 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
     @Override
     public CardOnFileAdapter.CardOnFileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View cardOnFileView = LayoutInflater.from( parent.getContext()).inflate(R.layout.card_view_test, parent, false);
+        View cardOnFileView = LayoutInflater.from( parent.getContext()).inflate(R.layout.card_om_file_card_view, parent, false);
         CardOnFileHolder cardOnFileHolder = new CardOnFileHolder(cardOnFileView);
         return cardOnFileHolder;
     }// Fin if onCreateViewHolder

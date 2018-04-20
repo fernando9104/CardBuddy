@@ -27,7 +27,6 @@
             app:layout_constraintGuide_percent="0.95" />
 
         <android.support.constraint.Guideline
-            android:id="@+id/guide_line_center_header_cardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -48,7 +47,6 @@
             app:layout_constraintGuide_percent="0.3" />
 
         <android.support.v7.widget.CardView
-            android:id="@+id/image_creditCard"
             android:layout_width="78dp"
             android:layout_height="48dp"
             android:layout_marginLeft="20dp"

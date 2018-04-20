@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,6 @@ import com.example.developermicalisoft.apis.Main;
 import com.example.developermicalisoft.apis.R;
 import com.example.developermicalisoft.apis.Services.BuildUrl;
 import com.example.developermicalisoft.apis.Services.Constants;
-import com.example.developermicalisoft.apis.Services.SortJsonSvc;
 import com.example.developermicalisoft.apis.Services.UrlConection;
 import com.example.developermicalisoft.apis.Services.UserInterfaceSvc;
 
@@ -30,14 +27,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class CardOnFile extends Fragment {
 

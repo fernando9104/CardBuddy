@@ -137,7 +137,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/msgProgressOnCardOnFile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_bottom_msg_to_progressOn"
@@ -149,7 +148,7 @@
             <ProgressBar
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="160dp"
-                android:layout_height="8dp"
+                android:layout_height="4dp"
                 android:indeterminate="true" />
 
         </LinearLayout>
