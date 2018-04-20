@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">APIs Visa</string>
+    <string name="app_name">Card Buddy</string>
     <string name="title_home">Account Updater</string>
     <string name="hint_account_number">Account Number *</string>
     <string name="hint_exp_date">Date Expiration *</string>

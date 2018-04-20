@@ -22,6 +22,7 @@ public class Splash extends AppCompatActivity {
 
         Handler handler     = new Handler();
         Runnable runnable;
+
         handler.postDelayed( runnable = new Runnable() {
             @Override
             public void run() {
