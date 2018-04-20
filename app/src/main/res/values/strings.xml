@@ -60,6 +60,7 @@
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
     <string name="credit_ending">Credit Card ending</string>
+    <string name="verifying_identity">Verifying Identity</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>
