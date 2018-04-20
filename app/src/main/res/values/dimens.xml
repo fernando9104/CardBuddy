@@ -5,9 +5,10 @@
 
     <!--Luis-->
     <dimen name="toolbar_title_label_size">20dp</dimen>
-    <dimen name="general_label_size">18dp</dimen>
-    <dimen name="spinner_label_size">14dp</dimen>
+    <dimen name="general_label_size">13dp</dimen>
+    <dimen name="spinner_label_size">13dp</dimen>
+    <dimen name="welcome_label_size">20dp</dimen>
     <dimen name="design_fab_image_size" tools:override="true">30dp</dimen>
-    <dimen name="button_size">15dp</dimen>
+    <dimen name="button_size">12dp</dimen>
 
 </resources>

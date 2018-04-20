@@ -13,7 +13,7 @@
         android:layout_marginTop="140dp"
         android:text="@string/welcome_label"
         android:textColor="@color/colorTextView"
-        android:textSize="23dp"
+        android:textSize="@dimen/welcome_label_size"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
