@@ -2,22 +2,28 @@ package com.example.developermicalisoft.apis.Modules.cardOnFile;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.developermicalisoft.apis.Main;
 import com.example.developermicalisoft.apis.R;
+import com.example.developermicalisoft.apis.Services.AlertDialogs;
 import com.example.developermicalisoft.apis.Services.BuildUrl;
 import com.example.developermicalisoft.apis.Services.Constants;
 import com.example.developermicalisoft.apis.Services.UrlConection;
@@ -44,7 +50,11 @@ public class CardOnFile extends Fragment {
     private FrameLayout progressOn, noDataLayout;
     private Context context;
     private String nameRequest = "loadCOF";
-    private TextView issuerName, numberCreditCard;
+    private TextView issuerName, numberCreditCard, msg_updCreditCardInfo;
+    private Button button_cancelRecurring;
+    CardView oldCardView = null;
+    private int oldPosition = -1;
+    CardOnFileAdapter.CardOnFileHolder cardViewSelected = null;
 
     @Nullable
     @Override
@@ -56,6 +66,8 @@ public class CardOnFile extends Fragment {
         noDataLayout = cardOnFileView.findViewById(R.id.noData);
         issuerName = cardOnFileView.findViewById(R.id.issuerName);
         numberCreditCard = cardOnFileView.findViewById(R.id.numberCreditCard);
+        button_cancelRecurring = cardOnFileView.findViewById(R.id.button_cancel_recurring);
+        msg_updCreditCardInfo = cardOnFileView.findViewById(R.id.msg_state_credit_card);
         // Se obtiene el recycler
         RecyclerView cardOnFileRecycler = cardOnFileView.findViewById(R.id.cardOnFileRecycler);
         cardOnFileRecycler.setHasFixedSize(true);
@@ -68,7 +80,11 @@ public class CardOnFile extends Fragment {
         // Inicializacion del adapater
         cardOnfileValues = new ArrayList<>();
         cardOnFileAdapter = new CardOnFileAdapter(cardOnfileValues);
+        cardOnFileAdapter.setOnSelectCardView( onClickItem );
         cardOnFileRecycler.setAdapter(cardOnFileAdapter);
+
+        // Add Events
+        button_cancelRecurring.setOnClickListener( onButtonClick );
 
         return cardOnFileView;
     }
@@ -92,6 +108,82 @@ public class CardOnFile extends Fragment {
         listenerResponse();
         loadData();
     }
+
+    /* INIT EVENTS */
+
+    /**
+     * <p><b>Es:</b>Evento onTouch o onclik</p>
+     */
+    private final CardOnFileAdapter.OnSelectCardView onClickItem = new CardOnFileAdapter.OnSelectCardView() {
+        @Override
+        public void onClickWarningButton(CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard) {
+            Toast.makeText(context, "Toco en warning", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onClickChechButton(CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard) {
+            Toast.makeText(context, "Toco en check", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onSelctCardView(CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard) {
+
+            cardViewSelected = viewHolder;
+
+            if( viewHolder.iconCheck.isShown() ){
+                msg_updCreditCardInfo.setTextColor( getResources().getColor(R.color.green_text) );
+                msg_updCreditCardInfo.setText( getString(R.string.updated_credit_card_information) );
+                msg_updCreditCardInfo.setVisibility( View.VISIBLE );
+                button_cancelRecurring.setVisibility( View.VISIBLE );
+            }
+
+            if( viewHolder.iconWarnin.isShown() ){
+                msg_updCreditCardInfo.setTextColor( getResources().getColor(R.color.red_text) );
+                msg_updCreditCardInfo.setText( getString(R.string.outdate_credit_card_information) );
+                msg_updCreditCardInfo.setVisibility( View.VISIBLE );
+                button_cancelRecurring.setVisibility( View.VISIBLE );
+            }
+
+            if( viewHolder.iconNoRecurringCharge.isShown() ){
+                button_cancelRecurring.setVisibility( View.GONE );
+                msg_updCreditCardInfo.setVisibility( View.GONE );
+            }
+            if( oldPosition != viewHolder.getAdapterPosition()  ){
+                oldPosition = viewHolder.getAdapterPosition();
+            }
+
+            viewHolder.cardOnfileCardView.setCardBackgroundColor( getResources().getColor(R.color.colorListSelector));
+
+            if( oldCardView == null ){
+                oldCardView = itemCard;
+            }
+
+            if( oldCardView != itemCard ){
+                oldCardView.setCardBackgroundColor( getResources().getColor(R.color.cardview_light_background));
+                oldCardView = itemCard;
+            }
+
+            ///Log.d( TAG_COF, "oldPosition: " + oldPosition);
+        }
+    };// Fin onClickItem
+
+    View.OnClickListener onButtonClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            AlertDialogs.confirmationAlert(getContext(), "ic_warning_two", "Cancel Recurrin Charge", getString(R.string.msg_delete_recurring_charge), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    cardViewSelected.iconWarnin.setVisibility( View.GONE );
+                    cardViewSelected.iconCheck.setVisibility( View.GONE );
+                    cardViewSelected.iconNoRecurringCharge.setVisibility( View.VISIBLE );
+                    button_cancelRecurring.setVisibility( View.GONE );
+                    msg_updCreditCardInfo.setVisibility( View.GONE );
+                }
+            },null);
+        }
+    };
+
+    /* END EVENTS */
 
     private void loadData() {
 

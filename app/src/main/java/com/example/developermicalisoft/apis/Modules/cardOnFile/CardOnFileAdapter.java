@@ -23,39 +23,47 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
     public CardOnFileAdapter(List<CardOnFileModel> cardOnFileValues) {
         this.cardOnFileValues = cardOnFileValues;
     }
+    private OnSelectCardView onSelectCardView;
     private SimpleDateFormat parseDate = new SimpleDateFormat("yyyy-mm-dd");
     private SimpleDateFormat formatDate = new SimpleDateFormat("d-mm-yyyy");
 
+    public void setOnSelectCardView( OnSelectCardView onClickCardView ){
+        this.onSelectCardView = onClickCardView;
+    }// Fin setOnSelectCardView
+
     public class CardOnFileHolder extends RecyclerView.ViewHolder {
 
+        CardView cardOnfileCardView;
         TextView merchaName, lastTransaction, labelImg;
-        ImageView iconCheck, iconWarnin;
+        ImageView iconCheck, iconWarnin, iconNoRecurringCharge;
 
         public CardOnFileHolder(View itemView) {
             super(itemView);
 
             // Obtenfo el cardiView.
-            CardView cardOnfileCardView = itemView.findViewById(R.id.cardOnFileCardView);
+            cardOnfileCardView = itemView.findViewById(R.id.cardOnFileCardView);
             // Se obtienen los campos del cardView.
             merchaName = itemView.findViewById(R.id.mrchName);
             lastTransaction = itemView.findViewById(R.id.lastMrchTranDt);
             iconCheck   = itemView.findViewById(R.id.icon_check_mark);
             iconWarnin  = itemView.findViewById(R.id.icon_warnin);
             labelImg    = itemView.findViewById(R.id.label_img);
+            iconNoRecurringCharge    = itemView.findViewById(R.id.icon_no_recurring_charge);
 
         }// Fin constructor CardOnFileHolder
+
     }// Fin CardOnFileHolder
 
     @Override
     public CardOnFileAdapter.CardOnFileHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View cardOnFileView = LayoutInflater.from( parent.getContext()).inflate(R.layout.card_om_file_card_view, parent, false);
+        View cardOnFileView = LayoutInflater.from( parent.getContext()).inflate(R.layout.card_on_file_card_view, parent, false);
         CardOnFileHolder cardOnFileHolder = new CardOnFileHolder(cardOnFileView);
         return cardOnFileHolder;
     }// Fin if onCreateViewHolder
 
     @Override
-    public void onBindViewHolder(CardOnFileAdapter.CardOnFileHolder cardHolder, int position) {
+    public void onBindViewHolder(final CardOnFileAdapter.CardOnFileHolder cardHolder, int position) {
 
         String merchanName = cardOnFileValues.get(position).mrchName;
         cardHolder.labelImg.setText( merchanName.substring(0,1));
@@ -81,11 +89,24 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
             cardHolder.iconCheck.setVisibility( View.GONE );
         }// Fin if/else
 
+        cardHolder.cardOnfileCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onSelectCardView.onSelctCardView( cardHolder, cardHolder.cardOnfileCardView );
+            }
+        });
+
     }// Fin onBindViewHolder
 
     @Override
     public int getItemCount() {
         return cardOnFileValues.size();
+    }
+
+    public interface OnSelectCardView{
+        void onClickWarningButton( CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard );
+        void onClickChechButton( CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard );
+        void onSelctCardView( CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard );
     }
 
 }// Fin CardOnFileAdapter
