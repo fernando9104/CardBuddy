@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,6 +80,12 @@ public class CardOnFile extends Fragment {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        context.unregisterReceiver( cofDP );
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         progressOn.setVisibility(View.VISIBLE);
@@ -139,11 +146,13 @@ public class CardOnFile extends Fragment {
                             switch ( nameRequest ){
 
                                 case "loadCOF":
+                                    stage += stage + " " + nameRequest;
                                     respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
                                     getData(respServer);
                                     loadGeneralInquiry();
                                     break;
                                 case "loadGeneral":
+                                    stage += stage + " " + nameRequest;
                                     respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
                                     publicLoadGeneral( respServer );
                                     break;
@@ -247,7 +256,7 @@ public class CardOnFile extends Fragment {
 
             JSONObject jsonObject = new JSONObject( respServer.get("result") );
             issuerName.setText( jsonObject.get("issuerName").toString() );
-            numberCreditCard.setText( context.getResources().getString(R.string.credit_ending) +" 4051" );
+            numberCreditCard.setText( context.getResources().getString(R.string.credit_ending) +" 0000" );
 
         } catch (JSONException e) {
 
