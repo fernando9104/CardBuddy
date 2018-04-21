@@ -56,11 +56,15 @@
     <string name="destination_country_label">United States - USD</string>
     <string name="error_request_Text">Sorry, there was a problem with the request, please try again or later.</string>
     <string name="colombia_required_Text">Please include Colombia in the travel itinerary to continue.</string>
+    <string name="credit_ending">Credit Card ending</string>
+    <string name="verifying_identity">Verifying Identity</string>
+    <string name="call_issuer_account_label">Call to Issuer Account Inquiry, Available Credit Balance</string>
+    <string name="avail_credit_label">Available Credit</string>
+    <string name="conversion_amount_2_label">- Conversion Amount</string>
+    <string name="remaining_credit_label">Remaining Credit</string>
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
-    <string name="credit_ending">Credit Card ending</string>
-    <string name="verifying_identity">Verifying Identity</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>

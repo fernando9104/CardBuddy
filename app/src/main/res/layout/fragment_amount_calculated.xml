@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/exchange_country_Text"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
+        android:layout_height="25dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
@@ -26,10 +26,10 @@
     <TextView
         android:id="@+id/conversion_rate_Text"
         android:layout_width="wrap_content"
-        android:layout_height="28dp"
+        android:layout_height="25dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:text="@string/convertion_rate_label"
         android:textColor="@color/colorTextView"
         android:textSize="@dimen/general_label_size"
@@ -45,7 +45,7 @@
         android:layout_height="28dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:text="@string/source_country_label"
         android:textColor="@color/colorTextView"
         android:textSize="@dimen/general_label_size"
@@ -58,8 +58,9 @@
 
     <TextView
         android:id="@+id/total_amount_Text"
-        android:layout_width="141dp"
-        android:layout_height="28dp"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="9dp"
         android:text="@string/total_amount_label"
@@ -68,24 +69,25 @@
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/source_country_Text"
-        tools:ignore="MissingConstraints,UnknownId" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/total_amount_Edit"
         android:layout_width="0dp"
-        android:layout_height="35dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginStart="26dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:focusable="false"
         android:inputType="number"
         android:textAlignment="center"
-        android:textColor="@color/colorAmountText"
         android:textSize="@dimen/spinner_label_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/total_amount_Text"
         app:layout_constraintTop_toBottomOf="@+id/source_country_Text"
-        tools:ignore="MissingConstraints,UnknownId" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/destination_country_Text"
@@ -95,7 +97,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="35dp"
         android:text="@string/destination_country_label"
         android:textColor="@color/colorTextView"
         android:textSize="@dimen/general_label_size"
@@ -107,8 +109,9 @@
 
     <TextView
         android:id="@+id/conversion_amount_Text"
-        android:layout_width="160dp"
-        android:layout_height="31dp"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="9dp"
         android:text="@string/conversion_amount_label"
@@ -117,24 +120,164 @@
         android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/destination_country_Text"
-        tools:ignore="MissingConstraints,UnknownId" />
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/call_issuer_account_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/call_issuer_account_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conversion_amount_Edit"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/conversion_amount_Edit"
         android:layout_width="0dp"
-        android:layout_height="35dp"
+        android:layout_height="30dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
         android:layout_marginStart="8dp"
         android:ems="10"
         android:focusable="false"
         android:inputType="number"
         android:textAlignment="center"
-        android:textColor="@color/colorAmountText"
         android:textSize="@dimen/spinner_label_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/conversion_amount_Text"
         app:layout_constraintTop_toBottomOf="@+id/destination_country_Text"
-        tools:ignore="MissingConstraints,UnknownId" />
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/avail_credit_Text"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/avail_credit_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/call_issuer_account_Text"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/avail_credit_Edit"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/avail_credit_Text"
+        app:layout_constraintTop_toBottomOf="@+id/call_issuer_account_Text"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/conversion_amount_2_Text"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/conversion_amount_2_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avail_credit_Text"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/conversion_amount_2_Edit"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/conversion_amount_2_Text"
+        app:layout_constraintTop_toBottomOf="@+id/avail_credit_Edit"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/remaining_credit_Text"
+        android:layout_width="130dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="11dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/remaining_credit_label"
+        android:textColor="@color/colorTextView"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/message_credit_Text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conversion_amount_2_Text"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/remaining_credit_Edit"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:focusable="false"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="@dimen/spinner_label_size"
+        app:layout_constraintBottom_toTopOf="@+id/message_credit_Text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/remaining_credit_Text"
+        app:layout_constraintTop_toBottomOf="@+id/conversion_amount_2_Edit"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/message_credit_Text"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginStart="24dp"
+        android:textSize="@dimen/general_label_size"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/calculate_another_Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/calculate_another_Button"
@@ -144,14 +287,11 @@
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
         android:text="@string/calculate_another_btn_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/conversion_amount_Text"
-        app:layout_constraintVertical_bias="0.681"
         tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>
