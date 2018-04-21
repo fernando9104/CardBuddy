@@ -93,4 +93,7 @@
         <item>404,KSh</item>
     </string-array>
 
+    <string name="outdate_credit_card_information">Please update your credit card information with this merchant - or your next recurring payment will be declined.</string>
+    <string name="updated_credit_card_information">Please update your credit card information with this merchant - or your next recurring payment will be declined.</string>
+    <string name="label_cancel_recurring_charge">Cancel Recurring Charge</string>
 </resources>
