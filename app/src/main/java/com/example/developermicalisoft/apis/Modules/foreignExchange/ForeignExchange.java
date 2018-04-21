@@ -118,7 +118,7 @@ public class ForeignExchange extends Fragment {
             public void run() {
                 setLayoutProgBar(false);
             }
-        }, 3000);
+        }, 2000);
     }
 
     /* Funcion que se encarga de configurar la verificacion
