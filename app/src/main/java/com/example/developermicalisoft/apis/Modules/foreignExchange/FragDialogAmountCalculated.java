@@ -1,5 +1,6 @@
 package com.example.developermicalisoft.apis.Modules.foreignExchange;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -20,8 +21,8 @@ public class FragDialogAmountCalculated extends DialogFragment{
     private static final String TAG = "FragDialogAmountCalculated";
     private ArrayList<String> data;
     private Button calculateAmountButton;
-    private TextView exchangeCountryTextView, conversionRateTextView, sourceCountryTextView;
-    private EditText totalAmountEditText, conversionAmountEditText;
+    private TextView exchangeCountryTextView, conversionRateTextView, sourceCountryTextView, messageCreditTextView;
+    private EditText totalAmountEditText, conversionAmountEditText, availCreditEditText, conversionAmount2EditText, remainingCreditEditText;
     private String textValueContainer;
     private HashMap<String,String> ISOcoins;
     private FragDialogAmountCalculated fragDialog;
@@ -45,13 +46,17 @@ public class FragDialogAmountCalculated extends DialogFragment{
         fragDialog = this;
 
         // Obtiene items del diseño
-        calculateAmountButton    = amountCalculatedLayout.findViewById(R.id.calculate_another_Button);
-        exchangeCountryTextView  = amountCalculatedLayout.findViewById(R.id.exchange_country_Text);
-        conversionRateTextView   = amountCalculatedLayout.findViewById(R.id.conversion_rate_Text);
-        sourceCountryTextView    = amountCalculatedLayout.findViewById(R.id.source_country_Text);
-        totalAmountEditText      = amountCalculatedLayout.findViewById(R.id.total_amount_Edit);
-        conversionAmountEditText = amountCalculatedLayout.findViewById(R.id.conversion_amount_Edit);
-        ISOcoins                 = getISOcoinsHashMap();
+        calculateAmountButton       = amountCalculatedLayout.findViewById(R.id.calculate_another_Button);
+        exchangeCountryTextView     = amountCalculatedLayout.findViewById(R.id.exchange_country_Text);
+        conversionRateTextView      = amountCalculatedLayout.findViewById(R.id.conversion_rate_Text);
+        sourceCountryTextView       = amountCalculatedLayout.findViewById(R.id.source_country_Text);
+        totalAmountEditText         = amountCalculatedLayout.findViewById(R.id.total_amount_Edit);
+        conversionAmountEditText    = amountCalculatedLayout.findViewById(R.id.conversion_amount_Edit);
+        availCreditEditText         = amountCalculatedLayout.findViewById(R.id.avail_credit_Edit);
+        conversionAmount2EditText   = amountCalculatedLayout.findViewById(R.id.conversion_amount_2_Edit);
+        remainingCreditEditText     = amountCalculatedLayout.findViewById(R.id.remaining_credit_Edit);
+        messageCreditTextView       = amountCalculatedLayout.findViewById(R.id.message_credit_Text);
+        ISOcoins                    = getISOcoinsHashMap();
 
         // Configura los textos con la informacion suministrada.
         textValueContainer = exchangeCountryTextView.getText().toString().replace("#country#", this.data.get(1));
@@ -64,6 +69,22 @@ public class FragDialogAmountCalculated extends DialogFragment{
 
         totalAmountEditText.setText(this.data.get(2));
         conversionAmountEditText.setText(this.data.get(4));
+        availCreditEditText.setText(this.data.get(5));
+        conversionAmount2EditText.setText(this.data.get(4));
+        remainingCreditEditText.setText(this.data.get(6));
+        messageCreditTextView.setText(this.data.get(7));
+
+        // Identifica el color
+        switch(this.data.get(8)){
+            case "red":
+                messageCreditTextView.setTextColor(getResources().getColor(R.color.red_text));
+                remainingCreditEditText.setTextColor(getResources().getColor(R.color.red_text));
+                break;
+            case "green":
+                messageCreditTextView.setTextColor(getResources().getColor(R.color.green_text));
+                remainingCreditEditText.setTextColor(getResources().getColor(R.color.green_text));
+                break;
+        }// fin del switch
 
         // Configura los eventos de escucha
         listenerEventsSetup();

@@ -5,10 +5,10 @@
     <color name="colorAccent">#304FFE</color>
     <color name="color_primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
-
+    <color name="red_text">#ffff4444</color>
+    <color name="green_text">#2DB703</color>
 
     <!--Luis-->
-
     <color name="colorTextView">#0062c4</color>
     <color name="colorCircProgBar">#0062c4</color>
     <color name="colorAppBarTitle">#FFFFFF</color>

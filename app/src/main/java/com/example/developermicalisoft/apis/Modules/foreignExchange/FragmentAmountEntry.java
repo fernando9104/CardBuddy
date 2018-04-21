@@ -47,6 +47,7 @@ public class FragmentAmountEntry  extends Fragment{
     private static Toast messageToast;
     private static Boolean sendMinimumAmount;
     private static String convRateTextContainer;
+    private static int requestNum;
 
     // Obtengo parametros pasados al fragment.
     @Override
@@ -88,7 +89,8 @@ public class FragmentAmountEntry  extends Fragment{
         messageToast          = Toast.makeText(getActivity(),"", Toast.LENGTH_SHORT );
         fragmentManager       = getFragmentManager();
         inputMethodManager    = (InputMethodManager)amountEntryLayout.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        selectedAmountList    = -1;
+        selectedAmountList    =-1;
+        requestNum            =0;
         conversionRateTextView.setVisibility(View.GONE);
 
         // Configura Pais
@@ -252,8 +254,11 @@ public class FragmentAmountEntry  extends Fragment{
             JSONObject params = new JSONObject();
 
             if( sendMinimumAmt ){
+                params.put("requestNum", 1 );
                 params.put("amount", minimumAmounts.get(selectedCountry));
             }else{
+                requestNum += 1;  // Aumenta numero de solicitud
+                params.put("requestNum", requestNum );
                 params.put("amount", totalAmountEdit.getText().toString());
             }
 
@@ -311,7 +316,6 @@ public class FragmentAmountEntry  extends Fragment{
             switch( APIname ){
                 case "F.E":
                     String conversionRate = respRequest.getString("conversionRate");
-                    String result = respRequest.getString("result");
 
                     if( sendMinimumAmount ){
 
@@ -324,13 +328,24 @@ public class FragmentAmountEntry  extends Fragment{
                         conversionRateTextView.setVisibility(View.VISIBLE);
                         executeRequestGAI();
                     }else{
+
+                        String destAmount       = respRequest.getString("destAmount");
+                        String availCredit      = respRequest.getString("availCredit");
+                        String remainCredit     = respRequest.getString("remainCredit");
+                        String msgCredit        = respRequest.getString("msgCredit");
+                        String msgCreditColor   = respRequest.getString("msgCreditColor");
+
                         // Crea el arreglo con los datos ingresados
                         ArrayList<String> data = new ArrayList<>();
-                        data.add(iSOCountries.get(selectedCountry));            //ISO
-                        data.add(selectedCountry);                              //Ciudad
-                        data.add(totalAmountEdit.getText().toString());         //Cantidad
-                        data.add(conversionRateTextView.getText().toString());  //ConversionRate
-                        data.add(result);                                       //Cantidad resultante
+                        data.add(iSOCountries.get(selectedCountry));            //ISO - 0
+                        data.add(selectedCountry);                              //Ciudad - 1
+                        data.add(totalAmountEdit.getText().toString());         //Cantidad - 2
+                        data.add(conversionRateTextView.getText().toString());  //ConversionRate - 3
+                        data.add(destAmount);                                   //Cantidad resultante - 4
+                        data.add(availCredit);                                  //Avail Credit - 5
+                        data.add(remainCredit);                                 //Remain Credit - 6
+                        data.add(msgCredit);                                    //Msg Credit - 7
+                        data.add(msgCreditColor);                               //Msg Credit Color - 8
 
                         // Crea objeto clave-valor para argumentos
                         Bundle args = new Bundle();
