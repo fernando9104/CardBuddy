@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 
+import com.example.developermicalisoft.apis.Services.UserInterfaceSvc;
+
 public class Splash extends AppCompatActivity {
 
     private int waitTime = 2000;
@@ -22,6 +24,8 @@ public class Splash extends AppCompatActivity {
 
         Handler handler     = new Handler();
         Runnable runnable;
+
+        UserInterfaceSvc.CreateShortcut( getApplicationContext() );
 
         handler.postDelayed( runnable = new Runnable() {
             @Override
