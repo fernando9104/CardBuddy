@@ -5,21 +5,18 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.developermicalisoft.apis.Main;
 import com.example.developermicalisoft.apis.R;
@@ -40,11 +37,10 @@ import java.util.Map;
 
 public class CardOnFile extends Fragment {
 
-
     private String stage, returnAction;
     private BroadcastReceiver cofDP;
     private Map<String, String> respServer;
-    private String TAG_COF = "Print COF";
+    private String LOG_COF = "Print COF";
     private List<CardOnFileModel> cardOnfileValues;
     private CardOnFileAdapter cardOnFileAdapter;
     private FrameLayout progressOn, noDataLayout;
@@ -52,8 +48,7 @@ public class CardOnFile extends Fragment {
     private String nameRequest = "loadCOF";
     private TextView issuerName, numberCreditCard, msg_updCreditCardInfo;
     private Button button_cancelRecurring;
-    CardView oldCardView = null;
-    private int oldPosition = -1;
+    CardView oldCardView = null;    // Guarda el ultimo cardView seleccionado.
     CardOnFileAdapter.CardOnFileHolder cardViewSelected = null;
 
     @Nullable
@@ -87,19 +82,13 @@ public class CardOnFile extends Fragment {
         button_cancelRecurring.setOnClickListener(onButtonClick);
 
         return cardOnFileView;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Main.setupToolbarText(R.string.title_credit_charges);
-    }
+    }// Fin onCreateView
 
     @Override
     public void onStop() {
         super.onStop();
         context.unregisterReceiver(cofDP);
-    }
+    }// Fin onStop
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -107,7 +96,7 @@ public class CardOnFile extends Fragment {
         progressOn.setVisibility(View.VISIBLE);
         listenerResponse();
         loadData();
-    }
+    }// Fin onViewCreated
 
     /* INIT EVENTS */
 
@@ -117,12 +106,12 @@ public class CardOnFile extends Fragment {
     private final CardOnFileAdapter.OnSelectCardView onClickItem = new CardOnFileAdapter.OnSelectCardView() {
         @Override
         public void onClickWarningButton(CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard) {
-            Toast.makeText(context, "Toco en warning", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Toco en warning", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onClickChechButton(CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard) {
-            Toast.makeText(context, "Toco en check", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, "Toco en check", Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -135,49 +124,46 @@ public class CardOnFile extends Fragment {
                 msg_updCreditCardInfo.setText(getString(R.string.updated_credit_card_information));
                 msg_updCreditCardInfo.setVisibility(View.VISIBLE);
                 button_cancelRecurring.setVisibility(View.VISIBLE);
-            }
+            }// Fin if iconCheck.isShown
 
             if (viewHolder.iconWarnin.isShown()) {
                 msg_updCreditCardInfo.setTextColor(getResources().getColor(R.color.red_text));
                 msg_updCreditCardInfo.setText(getString(R.string.outdate_credit_card_information));
                 msg_updCreditCardInfo.setVisibility(View.VISIBLE);
                 button_cancelRecurring.setVisibility(View.VISIBLE);
-            }
+            }// fin if iconWarnin.isShown
 
             if (viewHolder.iconNoRecurringCharge.isShown()) {
                 button_cancelRecurring.setVisibility(View.GONE);
                 msg_updCreditCardInfo.setVisibility(View.GONE);
-            }
-            if (oldPosition != viewHolder.getAdapterPosition()) {
-                oldPosition = viewHolder.getAdapterPosition();
-            }
+            }// Fin if iconNoRecurringCharge.isShown
 
+            // Se configura el background color para marcar como seleccioando el cargView
             viewHolder.cardOnfileCardView.setCardBackgroundColor(getResources().getColor(R.color.colorListSelector));
 
-            if (oldCardView == null) {
+            if ( oldCardView == null ) {
                 oldCardView = itemCard;
-            }
+            }// Se configura el cardView
 
-            if (oldCardView != itemCard) {
+            if ( oldCardView != itemCard ) {
                 oldCardView.setCardBackgroundColor(getResources().getColor(R.color.cardview_light_background));
                 oldCardView = itemCard;
             }
 
-            ///Log.d( TAG_COF, "oldPosition: " + oldPosition);
-        }
+        }// Fin onSelctCardView
+
     };// Fin onClickItem
 
     /**
-     * <p><b>Es: </b>Evento onclick</p>
+     * <p><b>Es: </b>Evento onclick del boton</p>
      */
     View.OnClickListener onButtonClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
 
             cancelMerchant();
-
         }
-    };
+    };// Fin onButtonClick
 
     /* END EVENTS */
 
@@ -220,8 +206,8 @@ public class CardOnFile extends Fragment {
 
         } catch (Exception e) {
             UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
-        }
-    }// Fin if
+        }// Fin try/catch
+    }// Fin loadGeneralInquiry
 
     /**
      * <p><b>Es: </b>Funcion que actua como listener o callback. Se encarga de recibir los datos
@@ -408,4 +394,4 @@ public class CardOnFile extends Fragment {
 
     }// Fin cancelRecurringCharge
 
-}
+}// Fin clase principal.
