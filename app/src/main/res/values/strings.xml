@@ -64,8 +64,8 @@
     <string name="updated_credit_card_information">Your credit card information with this merchant is up to date.</string>
     <string name="label_cancel_recurring_charge">Cancel Recurring Charge</string>
     <string name="msg_delete_recurring_charge">Are you sure that you want to cancel the recurring charge at this merchant?</string>
-    <string name="msg_title_cancel_merchant">You are required to cancel with the merchant first.</string>
-    <string name="msg_cancel_merchan">Have you cancelled with the merchant?</string>
+    <string name="msg_title_cancel_merchant">Merchant Cancel.</string>
+    <string name="msg_cancel_merchan">You are required to cancel with the merchant first.\n Have you cancelled with the merchant?</string>
     <string name="msg_cancel_recurring_charge">Cancel Recurring Charge</string>
 
     <!-- Seccion Arreglos -->
