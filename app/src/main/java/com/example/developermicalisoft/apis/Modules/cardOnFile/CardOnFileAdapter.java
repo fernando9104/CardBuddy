@@ -76,7 +76,7 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
         cardHolder.merchaName.setText( merchanName );
 
         String lastTransactionDate = cardOnFileValues.get(position).lastMrchTranDt;
-        Log.d("Print CardOnFileAdapter","lastTransactionDate: " + lastTransactionDate);
+
         try {
             Date date = parseDate.parse( lastTransactionDate );
             cardHolder.lastTransaction.setText( formatDate.format( date ) );
