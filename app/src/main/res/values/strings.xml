@@ -21,7 +21,7 @@
     <string name="amount_label">Amount</string>
     <string name="noTravelItinerary_title">No Travel Itinerary</string>
     <string name="noTravelItinerary_text">
-        You have not filed a travel itinerary.\nYour  card may be declined when used in Colombia, due to fraud protection.\n\n<b>To avoid this, would you like to file a travel itinerary now?</b>
+        You have not filed a travel itinerary.\nYour  card may be declined when used in Brazil, due to fraud protection.\n\n<b>To avoid this, would you like to file a travel itinerary now?</b>
     </string>
     <string name="countryNoTravelItinerary_title">Country Not In Travel Itinerary</string>
     <string name="countryNoTravelItinerary_text">
@@ -67,13 +67,14 @@
     <string name="msg_title_cancel_merchant">Merchant Cancel.</string>
     <string name="msg_cancel_merchan">You are required to cancel with the merchant first.\n Have you cancelled with the merchant?</string>
     <string name="msg_cancel_recurring_charge">Cancel Recurring Charge</string>
-
-    <!-- Seccion Arreglos -->
-    <string name="country_select_prompt">Select Country</string>
     <string name="title_travel_itiniraries">Travel Itineraries</string>
     <string name="title_foreign_rates">Foreign Enchange Rates</string>
     <string name="title_change_languaje">Change language</string>
+    <string name="label_lang_english">English</string>
+    <string name="label_lang_spanish">Spanish</string>
 
+    <!-- Seccion Arreglos -->
+    <string name="country_select_prompt">Select Country</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>
