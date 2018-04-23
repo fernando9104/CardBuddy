@@ -82,7 +82,13 @@ public class CardOnFile extends Fragment {
         button_cancelRecurring.setOnClickListener(onButtonClick);
 
         return cardOnFileView;
-    }// Fin onCreateView
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Main.setupToolbarText(R.string.title_credit_charges);
+    }
 
     @Override
     public void onStop() {
