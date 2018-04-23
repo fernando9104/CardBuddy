@@ -12,7 +12,6 @@
     <string name="vertical_margin_top_card_view">0.025</string>
     <string name="vertical_margin_bottom_card_view">0.975</string>
     <string name="text_please_wait">Please Wait</string>
-    <string name="foreingExchange_title">Travel Buddy</string>
     <string name="title_travel_buddy">Travel Buddy</string>
     <string name="welcome_title">Welcome</string>
     <string name="welcome_label">You are in</string>
@@ -73,6 +72,7 @@
     <string name="country_select_prompt">Select Country</string>
     <string name="title_travel_itiniraries">Travel Itineraries</string>
     <string name="title_foreign_rates">Foreign Enchange Rates</string>
+    <string name="title_change_languaje">Change language</string>
 
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
