@@ -21,6 +21,7 @@ public class ForeignExchange extends Fragment {
     private static Activity foreignExchangeActivity;
     private static ConstraintLayout layoutProgBar;
     private static String currentCheckPoint;
+
     private Toolbar toolbar;
     private View foreignChangeView;
 
@@ -118,7 +119,7 @@ public class ForeignExchange extends Fragment {
             public void run() {
                 setLayoutProgBar(false);
             }
-        }, 2000);
+        }, 8000);
     }
 
     /* Funcion que se encarga de configurar la verificacion
