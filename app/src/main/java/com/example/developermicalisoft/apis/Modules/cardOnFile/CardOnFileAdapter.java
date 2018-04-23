@@ -3,6 +3,7 @@ package com.example.developermicalisoft.apis.Modules.cardOnFile;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
     }
     private OnSelectCardView onSelectCardView;
     private SimpleDateFormat parseDate = new SimpleDateFormat("yyyy-mm-dd");
-    private SimpleDateFormat formatDate = new SimpleDateFormat("d-mm-yyyy");
+    private SimpleDateFormat formatDate = new SimpleDateFormat("d-MMM-yyyy");
 
     public void setOnSelectCardView( OnSelectCardView onClickCardView ){
         this.onSelectCardView = onClickCardView;
@@ -62,6 +63,11 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
         return cardOnFileHolder;
     }// Fin if onCreateViewHolder
 
+    /**
+     * Funcion encargada de realizar realizar el bind con el cardView
+     * @param cardHolder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final CardOnFileAdapter.CardOnFileHolder cardHolder, int position) {
 
@@ -70,7 +76,7 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
         cardHolder.merchaName.setText( merchanName );
 
         String lastTransactionDate = cardOnFileValues.get(position).lastMrchTranDt;
-
+        Log.d("Print CardOnFileAdapter","lastTransactionDate: " + lastTransactionDate);
         try {
             Date date = parseDate.parse( lastTransactionDate );
             cardHolder.lastTransaction.setText( formatDate.format( date ) );
@@ -103,10 +109,14 @@ public class CardOnFileAdapter extends Adapter<CardOnFileAdapter.CardOnFileHolde
         return cardOnFileValues.size();
     }
 
+    /**
+     * <p><b>Es: </b>Funcion que pone disponible los evento que se producen en el cardView para la
+     * clase principal "CardOnFile.java"</p>
+     */
     public interface OnSelectCardView{
         void onClickWarningButton( CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard );
         void onClickChechButton( CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard );
         void onSelctCardView( CardOnFileAdapter.CardOnFileHolder viewHolder, CardView itemCard );
-    }
+    }// Fin OnSelectCardView
 
 }// Fin CardOnFileAdapter

@@ -80,17 +80,17 @@ public class CardOnFile extends Fragment {
         // Inicializacion del adapater
         cardOnfileValues = new ArrayList<>();
         cardOnFileAdapter = new CardOnFileAdapter(cardOnfileValues);
-        cardOnFileAdapter.setOnSelectCardView( onClickItem );
+        cardOnFileAdapter.setOnSelectCardView(onClickItem);
         cardOnFileRecycler.setAdapter(cardOnFileAdapter);
 
         // Add Events
-        button_cancelRecurring.setOnClickListener( onButtonClick );
+        button_cancelRecurring.setOnClickListener(onButtonClick);
 
         return cardOnFileView;
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         Main.setupToolbarText(R.string.title_credit_charges);
     }
@@ -98,7 +98,7 @@ public class CardOnFile extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        context.unregisterReceiver( cofDP );
+        context.unregisterReceiver(cofDP);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class CardOnFile extends Fragment {
     /* INIT EVENTS */
 
     /**
-     * <p><b>Es:</b>Evento onTouch o onclik</p>
+     * <p><b>Es:</b>Evento onTouch o onclik del cardView</p>
      */
     private final CardOnFileAdapter.OnSelectCardView onClickItem = new CardOnFileAdapter.OnSelectCardView() {
         @Override
@@ -130,36 +130,36 @@ public class CardOnFile extends Fragment {
 
             cardViewSelected = viewHolder;
 
-            if( viewHolder.iconCheck.isShown() ){
-                msg_updCreditCardInfo.setTextColor( getResources().getColor(R.color.green_text) );
-                msg_updCreditCardInfo.setText( getString(R.string.updated_credit_card_information) );
-                msg_updCreditCardInfo.setVisibility( View.VISIBLE );
-                button_cancelRecurring.setVisibility( View.VISIBLE );
+            if (viewHolder.iconCheck.isShown()) {
+                msg_updCreditCardInfo.setTextColor(getResources().getColor(R.color.green_text));
+                msg_updCreditCardInfo.setText(getString(R.string.updated_credit_card_information));
+                msg_updCreditCardInfo.setVisibility(View.VISIBLE);
+                button_cancelRecurring.setVisibility(View.VISIBLE);
             }
 
-            if( viewHolder.iconWarnin.isShown() ){
-                msg_updCreditCardInfo.setTextColor( getResources().getColor(R.color.red_text) );
-                msg_updCreditCardInfo.setText( getString(R.string.outdate_credit_card_information) );
-                msg_updCreditCardInfo.setVisibility( View.VISIBLE );
-                button_cancelRecurring.setVisibility( View.VISIBLE );
+            if (viewHolder.iconWarnin.isShown()) {
+                msg_updCreditCardInfo.setTextColor(getResources().getColor(R.color.red_text));
+                msg_updCreditCardInfo.setText(getString(R.string.outdate_credit_card_information));
+                msg_updCreditCardInfo.setVisibility(View.VISIBLE);
+                button_cancelRecurring.setVisibility(View.VISIBLE);
             }
 
-            if( viewHolder.iconNoRecurringCharge.isShown() ){
-                button_cancelRecurring.setVisibility( View.GONE );
-                msg_updCreditCardInfo.setVisibility( View.GONE );
+            if (viewHolder.iconNoRecurringCharge.isShown()) {
+                button_cancelRecurring.setVisibility(View.GONE);
+                msg_updCreditCardInfo.setVisibility(View.GONE);
             }
-            if( oldPosition != viewHolder.getAdapterPosition()  ){
+            if (oldPosition != viewHolder.getAdapterPosition()) {
                 oldPosition = viewHolder.getAdapterPosition();
             }
 
-            viewHolder.cardOnfileCardView.setCardBackgroundColor( getResources().getColor(R.color.colorListSelector));
+            viewHolder.cardOnfileCardView.setCardBackgroundColor(getResources().getColor(R.color.colorListSelector));
 
-            if( oldCardView == null ){
+            if (oldCardView == null) {
                 oldCardView = itemCard;
             }
 
-            if( oldCardView != itemCard ){
-                oldCardView.setCardBackgroundColor( getResources().getColor(R.color.cardview_light_background));
+            if (oldCardView != itemCard) {
+                oldCardView.setCardBackgroundColor(getResources().getColor(R.color.cardview_light_background));
                 oldCardView = itemCard;
             }
 
@@ -167,24 +167,23 @@ public class CardOnFile extends Fragment {
         }
     };// Fin onClickItem
 
+    /**
+     * <p><b>Es: </b>Evento onclick</p>
+     */
     View.OnClickListener onButtonClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            AlertDialogs.confirmationAlert(getContext(), "ic_warning_two", "Cancel Recurrin Charge", getString(R.string.msg_delete_recurring_charge), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    cardViewSelected.iconWarnin.setVisibility( View.GONE );
-                    cardViewSelected.iconCheck.setVisibility( View.GONE );
-                    cardViewSelected.iconNoRecurringCharge.setVisibility( View.VISIBLE );
-                    button_cancelRecurring.setVisibility( View.GONE );
-                    msg_updCreditCardInfo.setVisibility( View.GONE );
-                }
-            },null);
+
+            cancelMerchant();
+
         }
     };
 
     /* END EVENTS */
 
+    /**
+     * <p><b>Es: </b>Funcion encarga de hacer la solicitud de los datos con la API COF</p>
+     */
     private void loadData() {
 
         try {
@@ -204,9 +203,12 @@ public class CardOnFile extends Fragment {
         }
     }// Fin loadData
 
-    private void loadGeneralInquiry(){
+    /**
+     * <p><b>Es: </b>Funcion encarga de hacer la solicitud de los datos con la API GENERAL INQUIRY </p>
+     */
+    private void loadGeneralInquiry() {
 
-        try{
+        try {
 
             stage = "Create Params loadGeneralInquiry";
             nameRequest = "loadGeneral";
@@ -216,11 +218,15 @@ public class CardOnFile extends Fragment {
             stringParameters.put("primaryAccountNumber", "4815070000000000");
             UrlConection.request(getActivity(), url, "POST", stringParameters);
 
-        }catch ( Exception e ){
+        } catch (Exception e) {
             UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
         }
     }// Fin if
 
+    /**
+     * <p><b>Es: </b>Funcion que actua como listener o callback. Se encarga de recibir los datos
+     * enviados desde el servidor.</p>
+     */
     private void listenerResponse() {
 
         cofDP = new BroadcastReceiver() {
@@ -235,41 +241,41 @@ public class CardOnFile extends Fragment {
 
                         case Constants.ACTION_SUCCESS:
 
-                            switch ( nameRequest ){
+                            switch (nameRequest) {
 
                                 case "loadCOF":
                                     stage += stage + " " + nameRequest;
-                                    respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
+                                    respServer = (Map<String, String>) intent.getSerializableExtra(Constants.DATA_FROM_SERVER);
                                     getData(respServer);
                                     loadGeneralInquiry();
                                     break;
                                 case "loadGeneral":
                                     stage += stage + " " + nameRequest;
-                                    respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
-                                    publicLoadGeneral( respServer );
+                                    respServer = (Map<String, String>) intent.getSerializableExtra(Constants.DATA_FROM_SERVER);
+                                    publicLoadGeneral(respServer);
                                     break;
                             }// Fin switch
                             break;
 
                         case Constants.ACTION_ERROR:
-                            respServer = (Map<String, String>) intent.getSerializableExtra( Constants.DATA_FROM_SERVER );
-                            if( noDataLayout.getVisibility() == View.GONE ){
-                                noDataLayout.setVisibility( View.VISIBLE );
-                                UserInterfaceSvc.showMsgError( context, getString(R.string.title_credit_charges), respServer.get("result") );
+                            respServer = (Map<String, String>) intent.getSerializableExtra(Constants.DATA_FROM_SERVER);
+                            if (noDataLayout.getVisibility() == View.GONE) {
+                                noDataLayout.setVisibility(View.VISIBLE);
+                                UserInterfaceSvc.showMsgError(context, getString(R.string.title_credit_charges), respServer.get("result"));
                             }
                             break;
 
                         case Constants.ACTION_FAIL:
-                            if( noDataLayout.getVisibility() == View.GONE ){
-                                noDataLayout.setVisibility( View.VISIBLE );
-                                UserInterfaceSvc.showMsgError( context, context.getResources().getString(R.string.title_credit_charges), intent.getStringExtra("responseRequest").toString() );
+                            if (noDataLayout.getVisibility() == View.GONE) {
+                                noDataLayout.setVisibility(View.VISIBLE);
+                                UserInterfaceSvc.showMsgError(context, context.getResources().getString(R.string.title_credit_charges), intent.getStringExtra("responseRequest").toString());
                             }
                             break;
                     }// Fin switch
 
                 } catch (Exception e) {
 
-                    UserInterfaceSvc.showMsgError( context, null, stage + " : " + e.getMessage() );
+                    UserInterfaceSvc.showMsgError(context, null, stage + " : " + e.getMessage());
                 }// Fin try/catch
 
                 progressOn.setVisibility(View.GONE);
@@ -289,6 +295,7 @@ public class CardOnFile extends Fragment {
 
     /**
      * <p><b>Es: </b>Funcion para obtener los datos enviados desde el servidor</p>
+     *
      * @param respServer
      */
     private void getData(Map<String, String> respServer) {
@@ -297,17 +304,17 @@ public class CardOnFile extends Fragment {
 
             String data = respServer.get("data");
 
-            if ( ! data.equals( "null" ) ) {
+            if (!data.equals("null")) {
 
                 stage = "get merchants";
-                JSONArray merchantsArray = new JSONArray( respServer.get("data") );
+                JSONArray merchantsArray = new JSONArray(respServer.get("data"));
 
                 stage = "publicData";
                 publicData(merchantsArray);
 
-            }else{
+            } else {
 
-                noDataLayout.setVisibility( View.VISIBLE );
+                noDataLayout.setVisibility(View.VISIBLE);
             }// Fin if
 
         } catch (Exception e) {
@@ -317,6 +324,12 @@ public class CardOnFile extends Fragment {
 
     }// Fin getData
 
+    /**
+     * <p><b>Es: </b>Funcion para poblar el cardView con los datos recibidos desde el servidor.
+     * desde la API COF</p>
+     *
+     * @param merchantsArray
+     */
     private void publicData(JSONArray merchantsArray) {
 
         try {
@@ -342,13 +355,19 @@ public class CardOnFile extends Fragment {
 
     }// Fin publicData
 
-    private void publicLoadGeneral( Map<String, String> respServer ){
+    /**
+     * <p><b>Es: </b>Funcion para poblar el cardView con los datos recibidos desde el servidor.
+     * desde la API GENERAL INQUIRY</p>
+     *
+     * @param respServer
+     */
+    private void publicLoadGeneral(Map<String, String> respServer) {
 
         try {
 
-            JSONObject jsonObject = new JSONObject( respServer.get("result") );
-            issuerName.setText( jsonObject.get("issuerName").toString() );
-            numberCreditCard.setText( context.getResources().getString(R.string.credit_ending) +" 0000" );
+            JSONObject jsonObject = new JSONObject(respServer.get("result"));
+            issuerName.setText(jsonObject.get("issuerName").toString());
+            numberCreditCard.setText(context.getResources().getString(R.string.credit_ending) + " 0000");
 
         } catch (JSONException e) {
 
@@ -356,5 +375,37 @@ public class CardOnFile extends Fragment {
         }
         //cardProductName
     }// Fin publicLoadGeneral
+
+    /**
+     * <p><b>Es: </b>Funcion para mostrar el mensaje de advertencia para cancelar el marchant</p>
+     */
+    private void cancelMerchant() {
+
+        AlertDialogs.confirmationAlert(getContext(), "ic_warning_two", getString(R.string.msg_title_cancel_merchant), getString(R.string.msg_cancel_merchan), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                cancelRecurringCharge();
+            }
+        }, "Yes");
+
+    }// Fin cancelMerchant
+
+    /**
+     * <p><b>Es: </b>Funcion que muestra el mensade de abvertencia para cancelar el pago recurrente</p>
+     */
+    private void cancelRecurringCharge() {
+
+        AlertDialogs.confirmationAlert(getContext(), "ic_warning_two", getString(R.string.msg_cancel_recurring_charge), getString(R.string.msg_delete_recurring_charge), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                cardViewSelected.iconWarnin.setVisibility(View.GONE);
+                cardViewSelected.iconCheck.setVisibility(View.GONE);
+                cardViewSelected.iconNoRecurringCharge.setVisibility(View.VISIBLE);
+                button_cancelRecurring.setVisibility(View.GONE);
+                msg_updCreditCardInfo.setVisibility(View.GONE);
+            }
+        }, null);
+
+    }// Fin cancelRecurringCharge
 
 }
