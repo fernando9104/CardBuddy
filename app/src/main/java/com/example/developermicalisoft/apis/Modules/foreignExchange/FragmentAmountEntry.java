@@ -67,7 +67,7 @@ public class FragmentAmountEntry  extends Fragment{
         ForeignExchange.setCheckPointApp("F");
 
         // Configura titulo del toolbar
-        ForeignExchange.setupToolbarText(R.string.foreingExchange_title);
+        ForeignExchange.setupToolbarText(R.string.title_travel_buddy);
 
         // Obtiene items del diseño
         amountEdit              = amountEntryLayout.findViewById(R.id.amount_Edit);

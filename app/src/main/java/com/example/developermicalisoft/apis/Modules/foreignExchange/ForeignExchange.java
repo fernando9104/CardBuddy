@@ -52,7 +52,7 @@ public class ForeignExchange extends Fragment {
 
     /* Configura el texto del toolbar de la applicacion. */
     public static void setupToolbarText( int id ){
-        Main.setupToolbarText(id);
+        Main.setupToolbarTitle(id);
     }
 
     /* Obtiene la actividad principal de la App. */

@@ -87,7 +87,7 @@ public class CardOnFile extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Main.setupToolbarText(R.string.title_credit_charges);
+        Main.setupToolbarTitle(R.string.title_credit_charges);
     }
 
     @Override

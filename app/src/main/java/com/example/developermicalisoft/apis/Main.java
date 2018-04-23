@@ -24,9 +24,7 @@ public class Main extends AppCompatActivity {
     private NavigationView navigationView;
     private FragmentManager fragmentManager = null;
     private ActionBar actionBar;
-
     private static Toolbar toolbar;
-    private static TextView toolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +32,6 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.main);
 
         toolbar         = (Toolbar) findViewById(R.id.toolbar);
-        toolbarTitle    = (TextView) findViewById(R.id.toolbar_title);
         drawerLayout    = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView  = (NavigationView) findViewById(R.id.nav_view);
 
@@ -109,8 +106,8 @@ public class Main extends AppCompatActivity {
     }// Fin showToolbar
 
     // Metodo que configura el titulo del toolbar
-    public static void setupToolbarText( int id ){
-        toolbarTitle.setText( id );
+    public static void setupToolbarTitle( int id ){
+        toolbar.setTitle(id);
     }
 
     @Override
