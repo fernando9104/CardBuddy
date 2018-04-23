@@ -42,7 +42,7 @@ public class FragmentWelcome  extends Fragment{
         welcomeTextView = welcomeLayout.findViewById(R.id.welcome_Text);
 
         // Configura titulo del toolbar
-        ForeignExchange.setupToolbarText(R.string.welcome_title);
+        ForeignExchange.setupToolbarText(R.string.title_travel_buddy);
 
         // Obtiene String label
         String welcomeLabel = getString(R.string.welcome_label);
