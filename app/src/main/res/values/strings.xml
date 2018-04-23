@@ -12,11 +12,9 @@
     <string name="vertical_margin_top_card_view">0.025</string>
     <string name="vertical_margin_bottom_card_view">0.975</string>
     <string name="text_please_wait">Please Wait</string>
-
-
     <string name="foreingExchange_title">Foreign Exchange Rates</string>
     <string name="welcome_title">Welcome</string>
-    <string name="welcome_label">You are in Brazil</string>
+    <string name="welcome_label">You are in</string>
     <string name="create_travel_itinerary_title">Travel Itinerary</string>
     <string name="update_travel_itinerary_title">Update Travel Itinerary</string>
     <string name="youAreIn_label">You are in</string>
@@ -62,6 +60,13 @@
     <string name="avail_credit_label">Available Credit</string>
     <string name="conversion_amount_2_label">- Conversion Amount</string>
     <string name="remaining_credit_label">Remaining Credit</string>
+    <string name="outdate_credit_card_information">Please update your credit card information with this merchant - or your next recurring payment will be declined.</string>
+    <string name="updated_credit_card_information">Your credit card information with this merchant is up to date.</string>
+    <string name="label_cancel_recurring_charge">Cancel Recurring Charge</string>
+    <string name="msg_delete_recurring_charge">Are you sure that you want to cancel the recurring charge at this merchant?</string>
+    <string name="msg_title_cancel_merchant">You are required to cancel with the merchant first.</string>
+    <string name="msg_cancel_merchan">Have you cancelled with the merchant?</string>
+    <string name="msg_cancel_recurring_charge">Cancel Recurring Charge</string>
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
@@ -93,11 +98,4 @@
         <item>404,KSh</item>
     </string-array>
 
-    <string name="outdate_credit_card_information">Please update your credit card information with this merchant - or your next recurring payment will be declined.</string>
-    <string name="updated_credit_card_information">Your credit card information with this merchant is up to date.</string>
-    <string name="label_cancel_recurring_charge">Cancel Recurring Charge</string>
-    <string name="msg_delete_recurring_charge">Are you sure that you want to cancel the recurring charge at this merchant?</string>
-    <string name="msg_title_cancel_merchant">You are required to cancel with the merchant first.</string>
-    <string name="msg_cancel_merchan">Have you cancelled with the merchant?</string>
-    <string name="msg_cancel_recurring_charge">Cancel Recurring Charge</string>
 </resources>
