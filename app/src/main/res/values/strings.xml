@@ -75,6 +75,7 @@
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
+    <string name="select_lang">Select the language</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>
