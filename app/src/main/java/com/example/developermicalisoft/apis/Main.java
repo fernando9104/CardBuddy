@@ -81,7 +81,7 @@ public class Main extends AppCompatActivity {
             case R.id.cardOnFile:
                 newfragment = new CardOnFile();
                 break;
-            case R.id.foreignExchange:
+            case R.id.travelBuddy:
                 newfragment = new ForeignExchange();
                 break;
         }
