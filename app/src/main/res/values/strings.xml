@@ -68,7 +68,7 @@
     <string name="title_foreign_rates">Foreign Exchange Rates</string>
     <string name="title_change_languaje">Change language</string>
     <string name="label_lang_english">English</string>
-    <string name="label_lang_spanish">Spanish</string>
+    <string name="label_lang_spanish">Español</string>
     <string name="select_lang">Select the language</string>
     <string name="label_name_merchant">Name:</string>
     <string name="label_last_transaction">Last Transaction:</string>

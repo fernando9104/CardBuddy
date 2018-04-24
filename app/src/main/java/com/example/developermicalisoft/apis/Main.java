@@ -148,7 +148,7 @@ public class Main extends AppCompatActivity {
                 locale = new Locale("en_US");
                 config.locale = locale;
                 break;
-            case "Spanish":
+            case "Español":
                 locale = new Locale("es");
                 config.locale = locale;
                 break;

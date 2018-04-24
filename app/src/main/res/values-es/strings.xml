@@ -73,4 +73,6 @@
     <string name="country_select_prompt">Seleccionar país</string>
     <string name="msg_available_credit_text">¡Aprobado! Usted tiene suficiente crédito disponible para realizar esta compra.</string>
     <string name="msg_not_available_credit_text">UUPs! No tiene suficiente crédito disponible para realizar esta compra.</string>
+    <string name="label_lang_english">English</string>
+    <string name="label_lang_spanish">Español</string>
 </resources>
