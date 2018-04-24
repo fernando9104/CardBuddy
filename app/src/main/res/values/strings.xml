@@ -67,7 +67,7 @@
     <string name="msg_cancel_merchan">You are required to cancel with the merchant first.\n Have you cancelled with the merchant?</string>
     <string name="msg_cancel_recurring_charge">Cancel Recurring Charge</string>
     <string name="title_travel_itiniraries">Travel Itineraries</string>
-    <string name="title_foreign_rates">Foreign Enchange Rates</string>
+    <string name="title_foreign_rates">Foreign Exchange Rates</string>
     <string name="title_change_languaje">Change language</string>
     <string name="label_lang_english">English</string>
     <string name="label_lang_spanish">Spanish</string>
