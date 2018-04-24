@@ -1,5 +1,6 @@
 package com.example.developermicalisoft.apis;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,8 +10,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -25,6 +28,7 @@ public class Main extends AppCompatActivity {
     private FragmentManager fragmentManager = null;
     private ActionBar actionBar;
     private static Toolbar toolbar;
+    private String optionSelectedItems = "ca";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +53,40 @@ public class Main extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar PayPalItem clicks here.
-        int id = item.getItemId();
-        drawerLayout.openDrawer(GravityCompat.START); /*Opens the Right Drawer*/
+        switch ( item.getItemId() ) {
+
+            case R.id.action_settings:
+                showOptionsLang();
+                break;
+            default:
+                int id = item.getItemId();
+                drawerLayout.openDrawer(GravityCompat.START); /*Opens the Right Drawer*/
+                break;
+        }// Fin switch
+
         return true;
     }
 
     /* INIT FUNCTIONS*/
+
+    private void showOptionsLang(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
+        // Creacion de la opciones radioButtons
+        final String[] items = new String[2];
+        items[0] = getString(R.string.label_lang_english);
+        items[1] = getString(R.string.label_lang_spanish);
+
+        builder.setTitle( getString(R.string.select_lang ));
+        // Evento onclik de los radiosButtons
+        builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                optionSelectedItems = items[which];
+            }
+        });// Fin evento onClick Radio Buttons
+        builder.show();
+    }
 
     private void setDrawerLayout(NavigationView navigationView) {
 
@@ -94,7 +126,16 @@ public class Main extends AppCompatActivity {
             item.setChecked( true );
         }
 
+
+
     }// FIn showFragment
+
+    //Menu de opciones o confifuraciones de la app
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_settings, menu);
+        return true;
+    }// Fin onCreateOptionsMenu
 
     // Se configura el toolbar
     private void showToolbar() {
@@ -115,22 +156,26 @@ public class Main extends AppCompatActivity {
 
         String currentCheckPoint = ForeignExchange.getCheckPointApp();
 
-        // Indentifica el punto de control
-        switch( currentCheckPoint ){
-            case "A":
-            case "B":
-                // No realizar ninguna accion
-                break;
-            case "F":
-                // Inicia de nuevo
-                Fragment welcomeFragment = ForeignExchange.getWelcomeFragment();
-                welcomeFragment.setArguments(null);
-                FragmentToTransaction.commit( ForeignExchange.getActivityMain(), welcomeFragment );
-                break;
-            default:
-               super.onBackPressed();  // Invoca al método
-                break;
-        }// Fin del switch
-    }
+        if( currentCheckPoint != null ){
+
+            // Indentifica el punto de control
+            switch( currentCheckPoint ){
+                case "A":
+                case "B":
+                    // No realizar ninguna accion
+                    break;
+                case "F":
+                    // Inicia de nuevo
+                    Fragment welcomeFragment = ForeignExchange.getWelcomeFragment();
+                    welcomeFragment.setArguments(null);
+                    FragmentToTransaction.commit( ForeignExchange.getActivityMain(), welcomeFragment );
+                    break;
+                default:
+                    super.onBackPressed();  // Invoca al método
+                    break;
+
+            }// Fin del switch
+        }// Fin if
+    }// Fin onBackPressed
 
 }

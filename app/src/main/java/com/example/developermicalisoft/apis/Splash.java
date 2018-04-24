@@ -12,7 +12,7 @@ import com.example.developermicalisoft.apis.Services.UserInterfaceSvc;
 
 public class Splash extends AppCompatActivity {
 
-    private int waitTime = 5000;
+    private int waitTime = 8000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

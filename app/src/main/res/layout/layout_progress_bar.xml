@@ -28,7 +28,6 @@
         tools:ignore="MissingConstraints" />
 
     <ProgressBar
-        android:id="@+id/welcome_progBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="160dp"
         android:layout_height="4dp"

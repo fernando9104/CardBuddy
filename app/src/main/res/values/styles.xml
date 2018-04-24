@@ -18,10 +18,6 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <style name="CircularProgress" parent="Theme.AppCompat.Light">
-        <item name="colorAccent">@color/colorCircProgBar</item>
-    </style>
-
     <style name="Buttons">
         <item name="android:textColor">@color/colorTextButton</item>
         <item name="android:textSize">@dimen/button_size</item>

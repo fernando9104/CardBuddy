@@ -11,9 +11,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/header"
-            layout="@layout/header" />
+        <include layout="@layout/header" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,9 +25,7 @@
                 android:layout_weight="1"
                 android:paddingTop="5dp" />
 
-            <include
-                android:id="@+id/footer"
-                layout="@layout/card_on_file_footer" />
+            <include layout="@layout/card_on_file_footer" />
 
         </LinearLayout>
 

@@ -10,17 +10,15 @@
 
         <item
             android:id="@+id/travelBuddy"
-            android:icon="@drawable/ic_credit_card"
+            android:icon="@drawable/ic_card_travel"
             android:title="@string/title_travel_buddy" />
 
         <item
-            android:id="@+id/travelItineraries"
-            android:icon="@drawable/ic_credit_card"
+            android:icon="@drawable/ic_flight_takeoff"
             android:title="@string/title_travel_itiniraries" />
 
         <item
-            android:id="@+id/foreignExchange"
-            android:icon="@drawable/ic_credit_card"
+            android:icon="@drawable/ic_travel_dubby"
             android:title="@string/title_foreign_rates" />
     </group>
 </menu>
