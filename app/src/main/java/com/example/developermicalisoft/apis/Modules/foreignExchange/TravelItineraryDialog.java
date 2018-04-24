@@ -18,7 +18,7 @@ public class TravelItineraryDialog {
         int titleId             = 0;
         int textId              = 0;
         final String callDialog = data.get(0);
-        int azafataIconId       = activity.getResources().getIdentifier("azafata", "drawable", activity.getPackageName());
+//        int azafataIconId       = activity.getResources().getIdentifier("azafata", "drawable", activity.getPackageName());
 
 
         // Configura punto de control actual de la App
@@ -44,7 +44,7 @@ public class TravelItineraryDialog {
                 .setTitle(titleId)
                 .setMessage(textId)
                 .setCancelable(false)
-                .setIcon(azafataIconId)
+                .setIcon(activity.getResources().getDrawable(R.drawable.azafata))
                 .setPositiveButton(R.string.yes_button_text, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
