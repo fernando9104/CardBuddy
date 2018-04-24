@@ -129,14 +129,14 @@ public class Main extends AppCompatActivity {
 
 
     }// FIn showFragment
-
+/*
     //Menu de opciones o confifuraciones de la app
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_settings, menu);
         return true;
     }// Fin onCreateOptionsMenu
-
+    */
     // Se configura el toolbar
     private void showToolbar() {
         if (actionBar != null) {
