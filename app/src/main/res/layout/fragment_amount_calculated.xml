@@ -75,7 +75,7 @@
 
     <EditText
         android:id="@+id/total_amount_Edit"
-        android:layout_width="145dp"
+        android:layout_width="140dp"
         android:layout_height="35dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
@@ -144,7 +144,7 @@
 
     <EditText
         android:id="@+id/conversion_amount_Edit"
-        android:layout_width="145dp"
+        android:layout_width="140dp"
         android:layout_height="35dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
@@ -178,7 +178,7 @@
 
     <EditText
         android:id="@+id/avail_credit_Edit"
-        android:layout_width="145dp"
+        android:layout_width="140dp"
         android:layout_height="35dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
@@ -212,7 +212,7 @@
 
     <EditText
         android:id="@+id/conversion_amount_2_Edit"
-        android:layout_width="145dp"
+        android:layout_width="140dp"
         android:layout_height="35dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
@@ -244,7 +244,7 @@
 
     <EditText
         android:id="@+id/remaining_credit_Edit"
-        android:layout_width="145dp"
+        android:layout_width="140dp"
         android:layout_height="35dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
