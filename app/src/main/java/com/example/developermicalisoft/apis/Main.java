@@ -1,6 +1,7 @@
 package com.example.developermicalisoft.apis;
 
 import android.content.DialogInterface;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -34,6 +35,7 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         toolbar         = (Toolbar) findViewById(R.id.toolbar);
         drawerLayout    = (DrawerLayout) findViewById(R.id.drawer_layout);
