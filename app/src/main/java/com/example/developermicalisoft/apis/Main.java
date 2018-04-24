@@ -44,6 +44,13 @@ public class Main extends AppCompatActivity {
     private Configuration config = new Configuration();
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        CardOnFile cardOnFile = new CardOnFile();
+        cardOnFile.unRegisterReceiver();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -63,8 +70,7 @@ public class Main extends AppCompatActivity {
         setDrawerLayout(navigationView);
 
         currentLang = Locale.getDefault().getDisplayLanguage();
-        confiLocal  = getResources().getConfiguration().locale;
-        Log.d(TAG_LOG, "confiLocal: " + confiLocal);
+        confiLocal = getResources().getConfiguration().locale;
 
         // Se hace la seleccion del primer item del menu.
         showFragment(navigationView.getMenu().getItem(0));
@@ -87,7 +93,7 @@ public class Main extends AppCompatActivity {
         }// Fin switch
 
         return true;
-    }
+    }// Fin onOptionsItemSelected
 
     /* INIT FUNCTIONS*/
 
@@ -103,12 +109,12 @@ public class Main extends AppCompatActivity {
 
         builder.setTitle(getString(R.string.select_lang));
         // Evento onclik de los radiosButtons
-        if( currentLang.equals("English" ) ){
+        if (currentLang.equals("English")) {
             selectItem = 0;
-        }else if( currentLang.equals("español") ){
+        } else if (currentLang.equals("español")) {
             selectItem = 1;
         }
-        switch ( confiLocal.toString() ){
+        switch (confiLocal.toString()) {
             case "en_US":
             case "en_us":
             case "en":
@@ -139,10 +145,11 @@ public class Main extends AppCompatActivity {
 
         builder.show();
 
-
-    }
+    }// Fin showOptionsLang
 
     private void changeLan(String langSelected) {
+
+
 
         switch (langSelected) {
 
@@ -228,8 +235,8 @@ public class Main extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-
         switch (itemSelected.getItemId()) {
+
             case R.id.cardOnFile:
                 break;
             case R.id.travelBuddy:
@@ -256,11 +263,9 @@ public class Main extends AppCompatActivity {
 
                     }// Fin del switch
                 }// Fin if
-
                 break;
-        }
 
-
+        }// Fin switch
     }// Fin onBackPressed
 
 }
