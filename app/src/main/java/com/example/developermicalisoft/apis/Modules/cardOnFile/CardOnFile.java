@@ -89,6 +89,9 @@ public class CardOnFile extends Fragment {
     public void onResume() {
         super.onResume();
         Main.setupToolbarTitle(R.string.title_credit_charges);
+        if( cofDP != null ){
+            context.unregisterReceiver(cofDP);
+        }
         listenerResponse();
     }
 
@@ -109,7 +112,6 @@ public class CardOnFile extends Fragment {
         if( cofDP != null ){
             context.unregisterReceiver(cofDP);
         }
-
     }
 
     public void unRegisterReceiver(){
