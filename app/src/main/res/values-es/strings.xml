@@ -11,26 +11,30 @@
     <string name="text_please_wait">Cargando</string>
     <string name="title_travel_buddy">Compañero de Viaje</string>
     <string name="welcome_label">Estas en</string>
-    <string name="create_travel_itinerary_title">Itinerario de viaje</string>
-    <string name="update_travel_itinerary_title">Actualizar itinerario de viaje</string>
+    <string name="create_travel_itinerary_title">Itinerario de Viaje</string>
+    <string name="update_travel_itinerary_title">Actualizar Itinerario de Viaje</string>
     <string name="youAreIn_label">Estas en</string>
     <string name="amount_label">Cantidad</string>
     <string name="noTravelItinerary_title">Sin Itinerario de Viaje</string>
-    <string name="noTravelItinerary_text">No ha creado un itinerario de viaje. Su tarjeta puede ser rechazada cuando se utilice en Brasil, debido a la protección contra el fraude. Para evitar esto, ¿desea crear un itinerario de viaje ahora?</string>
+    <string name="noTravelItinerary_text">
+        No ha creado un itinerario de viaje.\nSu tarjeta puede ser rechazada cuando se utilice en Brazil, debido a la protección contra fraude.\n\n<b>Para evitar esto, ¿desea crear un itinerario de viaje ahora?</b>
+    </string>
     <string name="countryNoTravelItinerary_title">País no está en el itinerario de viaje</string>
-    <string name="countryNoTravelItinerary_text">Colombia no está incluido en su itinerario de viaje. Su tarjeta puede ser rechazada cuando se use en Colombia, debido a la protección contra el fraude. Para evitar esto, ¿le gustaría actualizar su itinerario de viaje ahora?</string>
+    <string name="countryNoTravelItinerary_text">
+        Colombia no está incluido en su itinerario de viaje.\nSu tarjeta puede ser rechazada cuando se use en Colombia, debido a la protección contra fraude.\n\n<b>Para evitar esto, ¿le gustaría actualizar su itinerario de viaje ahora?</b>
+    </string>
     <string name="yes_button_text">SI</string>
     <string name="no_button_text">NO</string>
     <string name="departureDate_label">Fecha de salida</string>
     <string name="returnDate_label">Fecha de regreso</string>
     <string name="formatDate_label">DD-MMM-YYYY</string>
-    <string name="fileTravelItinerary_btn_text">Archivo de Itinerario de viaje</string>
+    <string name="fileTravelItinerary_btn_text">Archivar Itinerario de viaje</string>
     <string name="countriesVisting_label">Países que visita</string>
-    <string name="updateTravelItinerary_btn_text">Actualizar el itinerario de viaje</string>
+    <string name="updateTravelItinerary_btn_text">Actualizar Itinerario de Viaje</string>
     <string name="cancel_btn_text">Cancelar</string>
     <string name="country_selected_exist_Text">El país seleccionado ya está en la lista de itinerario de viaje. Por favor seleccione un país diferente.</string>
     <string name="no">No</string>
-    <string name="country_no_selected_list_Text">Por favor seleccione un país para ser eliminado del itinerario de viaje</string>
+    <string name="country_no_selected_list_Text">Por favor seleccione un país para eliminarlo del itinerario de viaje</string>
     <string name="country_select_Text">Por favor seleccione un país.</string>
     <string name="data_required_Text">Por favor ingrese toda la información requerida.</string>
     <string name="travel_itinerary_created">Su itinerario de viaje ha sido archivado.</string>
@@ -43,4 +47,28 @@
     <string name="conversion_amount_label">Monto de Conversión</string>
     <string name="label_last_transaction">Última transacción:</string>
     <string name="label_name_merchant">Nombre:</string>
+    <string name="amount_no_selected_list_Text">Seleccione una cantidad de la lista para eliminar.</string>
+    <string name="amount_empty_Text">Por favor ingrese una cantidad.</string>
+    <string name="calculate_another_btn_text">Calcular Otra Cantidad</string>
+    <string name="destination_country_label">Estados Unidos - USD</string>
+    <string name="error_request_Text">Lo sentimos, hubo un problema con la solicitud, intente de nuevo o más tarde.</string>
+    <string name="colombia_required_Text">Por favor incluya a Colombia en el itinerario de viaje para continuar.</string>
+    <string name="credit_ending">Final de tarjeta de crédito</string>
+    <string name="verifying_identity">Verificando identidad</string>
+    <string name="call_issuer_account_label">Llamada de consulta a la cuenta del emisor, saldo de crédito disponible</string>
+    <string name="avail_credit_label">Crédito Disponible</string>
+    <string name="conversion_amount_2_label">- Cantidad de conversión</string>
+    <string name="remaining_credit_label">Crédito Restante</string>
+    <string name="outdate_credit_card_information">Actualice la información de su tarjeta de crédito con este comerciante, o su próximo pago recurrente será rechazado.</string>
+    <string name="updated_credit_card_information">La información de su tarjeta de crédito con este comerciante está actualizada.</string>
+    <string name="label_cancel_recurring_charge">Cancelar cargo recurrente</string>
+    <string name="msg_delete_recurring_charge">¿Estás seguro de que deseas cancelar el cargo recurrente en este comerciante?</string>
+    <string name="msg_title_cancel_merchant">Merchant Cancel.</string>
+    <string name="msg_cancel_merchan">Primero debes cancelar con el comerciante. ¿Has cancelado con el comerciante?</string>
+    <string name="msg_cancel_recurring_charge">Cancelar cargo recurrente</string>
+    <string name="title_travel_itiniraries">Itinerarios de viaje</string>
+    <string name="title_foreign_rates">Tipos de Divisas</string>
+    <string name="title_change_languaje">Cambiar idioma</string>
+    <string name="select_lang">Seleccione el idioma</string>
+    <string name="country_select_prompt">Seleccionar país</string>
 </resources>
