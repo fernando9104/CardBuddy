@@ -75,6 +75,8 @@
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
+    <string name="label_name_merchant">Name:</string>
+    <string name="label_last_transaction">Last Transaction:</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>

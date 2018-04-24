@@ -24,14 +24,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.14" />
+            app:layout_constraintGuide_percent="0.16" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guide_margin_left"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.42" />
+            app:layout_constraintGuide_percent="0.45" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guide_margin_right_card_view"
@@ -41,18 +41,25 @@
             app:layout_constraintGuide_percent="0.97" />
 
         <android.support.constraint.Guideline
+            android:id="@+id/guide_margin_text_right_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <android.support.constraint.Guideline
             android:id="@+id/guide_margin_top_card_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="@string/vertical_margin_top_card_view" />
+            app:layout_constraintGuide_percent="0.05" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guide_margin_bottom_card_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="@string/vertical_margin_bottom_card_view" />
+            app:layout_constraintGuide_percent="0.95" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guide_center_horizontal"
@@ -63,8 +70,8 @@
 
         <TextView
             android:id="@+id/label_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_marginBottom="2dp"
             android:layout_marginTop="2dp"
             android:background="@drawable/circle_text"
@@ -73,7 +80,7 @@
             android:textAllCaps="true"
             android:textAppearance="?android:textAppearanceInverse"
             android:textColor="@android:color/white"
-            android:textSize="18dp"
+            android:textSize="24dp"
             app:layout_constraintBottom_toTopOf="@+id/guide_margin_bottom_card_view"
             app:layout_constraintLeft_toRightOf="@+id/guide_margin_circle_icon"
             app:layout_constraintTop_toBottomOf="@+id/guide_margin_top_card_view" />
@@ -82,9 +89,9 @@
             android:id="@+id/label_Name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Name:"
+            android:text="@string/label_name_merchant"
             android:textAppearance="?android:textAppearanceInverse"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="12dp"
             android:textStyle="italic"
             android:visibility="visible"
@@ -103,7 +110,7 @@
             android:textSize="12dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/label_Name"
             app:layout_constraintLeft_toRightOf="@+id/guide_margin_left"
-            app:layout_constraintRight_toLeftOf="@+id/guide_margin_right_card_view"
+            app:layout_constraintRight_toLeftOf="@+id/guide_margin_text_right_card_view"
             tools:ignore="UnknownId" />
 
 
@@ -117,21 +124,21 @@
             android:textSize="12dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/label_LastTransaction"
             app:layout_constraintLeft_toRightOf="@+id/guide_margin_left"
-            app:layout_constraintRight_toLeftOf="@+id/guide_margin_right_card_view" />
+            app:layout_constraintRight_toLeftOf="@+id/guide_margin_text_right_card_view" />
 
         <TextView
             android:id="@+id/label_LastTransaction"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Last Transaction:"
+            android:text="@string/label_last_transaction"
             android:textAppearance="?android:textAppearanceInverse"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:textSize="12dp"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/guide_margin_bottom_card_view"
             app:layout_constraintLeft_toRightOf="@+id/guide_margin_left_card_view"
             app:layout_constraintRight_toLeftOf="@+id/guide_margin_left"
-            app:layout_constraintTop_toBottomOf="@+id/guide_center_horizontal" />
+            app:layout_constraintTop_toBottomOf="@+id/mrchName" />
 
         <ImageView
             android:id="@+id/icon_check_mark"
@@ -147,7 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_warning_two"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/guide_margin_bottom_card_view"
             app:layout_constraintRight_toLeftOf="@id/guide_margin_right_card_view" />
 
