@@ -88,19 +88,19 @@ public class CardOnFile extends Fragment {
     public void onResume() {
         super.onResume();
         Main.setupToolbarTitle(R.string.title_credit_charges);
+        listenerResponse();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        //context.unregisterReceiver(cofDP);
+        context.unregisterReceiver(cofDP);
     }// Fin onStop
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         progressOn.setVisibility(View.VISIBLE);
-        listenerResponse();
         loadData();
     }// Fin onViewCreated
 
@@ -245,7 +245,6 @@ public class CardOnFile extends Fragment {
                                     stage += stage + " " + nameRequest;
                                     respServer = (Map<String, String>) intent.getSerializableExtra(Constants.DATA_FROM_SERVER);
                                     publicLoadGeneral(respServer);
-                                    context.unregisterReceiver(cofDP);
                                     break;
                             }// Fin switch
                             break;

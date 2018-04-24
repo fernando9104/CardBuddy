@@ -38,6 +38,7 @@ public class Main extends AppCompatActivity {
     private String lang_spanish, lang_english;
     private String TAG_LOG = "Print Main";
     private String currentLang;
+    private MenuItem itemSelected;
 
     private Locale locale, confiLocal;
     private Configuration config = new Configuration();
@@ -72,6 +73,7 @@ public class Main extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle action bar PayPalItem clicks here.
         switch (item.getItemId()) {
 
@@ -177,6 +179,7 @@ public class Main extends AppCompatActivity {
 
         Fragment newfragment = null;
         fragmentManager = getSupportFragmentManager();
+        itemSelected = item;
 
         switch (item.getItemId()) {
             case R.id.cardOnFile:
@@ -221,31 +224,43 @@ public class Main extends AppCompatActivity {
         toolbar.setTitle(id);
     }
 
+
     @Override
     public void onBackPressed() {
 
-        String currentCheckPoint = ForeignExchange.getCheckPointApp();
 
-        if (currentCheckPoint != null) {
+        switch (itemSelected.getItemId()) {
+            case R.id.cardOnFile:
+                break;
+            case R.id.travelBuddy:
 
-            // Indentifica el punto de control
-            switch (currentCheckPoint) {
-                case "A":
-                case "B":
-                    // No realizar ninguna accion
-                    break;
-                case "F":
-                    // Inicia de nuevo
-                    Fragment welcomeFragment = ForeignExchange.getWelcomeFragment();
-                    welcomeFragment.setArguments(null);
-                    FragmentToTransaction.commit(ForeignExchange.getActivityMain(), welcomeFragment);
-                    break;
-                default:
-                    super.onBackPressed();  // Invoca al método
-                    break;
+                String currentCheckPoint = ForeignExchange.getCheckPointApp();
 
-            }// Fin del switch
-        }// Fin if
+                if (currentCheckPoint != null) {
+
+                    // Indentifica el punto de control
+                    switch (currentCheckPoint) {
+                        case "A":
+                        case "B":
+                            // No realizar ninguna accion
+                            break;
+                        case "F":
+                            // Inicia de nuevo
+                            Fragment welcomeFragment = ForeignExchange.getWelcomeFragment();
+                            welcomeFragment.setArguments(null);
+                            FragmentToTransaction.commit(ForeignExchange.getActivityMain(), welcomeFragment);
+                            break;
+                        default:
+                            super.onBackPressed();  // Invoca al método
+                            break;
+
+                    }// Fin del switch
+                }// Fin if
+
+                break;
+        }
+
+
     }// Fin onBackPressed
 
 }
