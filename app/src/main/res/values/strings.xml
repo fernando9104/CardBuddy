@@ -72,11 +72,13 @@
     <string name="label_lang_english">English</string>
     <string name="label_lang_spanish">Spanish</string>
     <string name="select_lang">Select the language</string>
+    <string name="label_name_merchant">Name:</string>
+    <string name="label_last_transaction">Last Transaction:</string>
+    <string name="msg_available_credit_text">OK! You have enough available credit to make this purchase.</string>
+    <string name="msg_not_available_credit_text">OOPs! You do not have enough available credit to make this purchase.</string>
 
     <!-- Seccion Arreglos -->
     <string name="country_select_prompt">Select Country</string>
-    <string name="label_name_merchant">Name:</string>
-    <string name="label_last_transaction">Last Transaction:</string>
     <string-array name="countries">
         <item>@string/country_select_prompt</item>
         <item>68,Bolivia</item>

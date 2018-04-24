@@ -72,15 +72,16 @@ public class FragDialogAmountCalculated extends DialogFragment{
         availCreditEditText.setText(this.data.get(5));
         conversionAmount2EditText.setText(this.data.get(4));
         remainingCreditEditText.setText(this.data.get(6));
-        messageCreditTextView.setText(this.data.get(7));
 
         // Identifica el color
         switch(this.data.get(8)){
             case "red":
+                messageCreditTextView.setText(R.string.msg_not_available_credit_text);
                 messageCreditTextView.setTextColor(getResources().getColor(R.color.red_text));
                 remainingCreditEditText.setTextColor(getResources().getColor(R.color.red_text));
                 break;
             case "green":
+                messageCreditTextView.setText(R.string.msg_available_credit_text);
                 messageCreditTextView.setTextColor(getResources().getColor(R.color.green_text));
                 remainingCreditEditText.setTextColor(getResources().getColor(R.color.green_text));
                 break;
