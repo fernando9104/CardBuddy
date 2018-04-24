@@ -93,7 +93,7 @@ public class CardOnFile extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        context.unregisterReceiver(cofDP);
+        //context.unregisterReceiver(cofDP);
     }// Fin onStop
 
     @Override
@@ -245,6 +245,7 @@ public class CardOnFile extends Fragment {
                                     stage += stage + " " + nameRequest;
                                     respServer = (Map<String, String>) intent.getSerializableExtra(Constants.DATA_FROM_SERVER);
                                     publicLoadGeneral(respServer);
+                                    context.unregisterReceiver(cofDP);
                                     break;
                             }// Fin switch
                             break;
