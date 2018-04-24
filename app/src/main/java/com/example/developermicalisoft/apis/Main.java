@@ -38,7 +38,7 @@ public class Main extends AppCompatActivity {
     private String lang_spanish, lang_english;
     private String TAG_LOG = "Print Main";
     private String currentLang;
-    private MenuItem itemSelected;
+    private MenuItem itemSelected, oldItemSelected;
 
     private Locale locale, confiLocal;
     private Configuration config = new Configuration();
@@ -46,8 +46,10 @@ public class Main extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+
         CardOnFile cardOnFile = new CardOnFile();
         cardOnFile.unRegisterReceiver();
+
     }
 
     @Override
@@ -188,24 +190,30 @@ public class Main extends AppCompatActivity {
         fragmentManager = getSupportFragmentManager();
         itemSelected = item;
 
-        switch (item.getItemId()) {
-            case R.id.cardOnFile:
-                newfragment = new CardOnFile();
-                break;
-            case R.id.travelBuddy:
-                newfragment = new ForeignExchange();
-                break;
-        }
+        if( oldItemSelected != item ){
 
-        if (newfragment != null) {
-            fragmentManager.beginTransaction().
-                    replace(R.id.fragment_container, newfragment)
-                    .setTransition(FragmentTransaction.TRANSIT_EXIT_MASK)
-                    .commit();
-        }
+            switch (item.getItemId()) {
+                case R.id.cardOnFile:
+                    newfragment = new CardOnFile();
+                    oldItemSelected = item;
+                    break;
+                case R.id.travelBuddy:
+                    oldItemSelected = item;
+                    newfragment = new ForeignExchange();
+                    break;
+            }
 
-        if (item.isChecked() == false) {
-            item.setChecked(true);
+            if (newfragment != null) {
+                fragmentManager.beginTransaction().
+                        replace(R.id.fragment_container, newfragment)
+                        .setTransition(FragmentTransaction.TRANSIT_EXIT_MASK)
+                        .commit();
+            }
+
+            if (item.isChecked() == false) {
+                item.setChecked(true);
+            }
+
         }
 
     }// FIn showFragment
